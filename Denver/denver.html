@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EatSpeak: Denver</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+	<!-- <link rel="stylesheet" href="leafletd3.css"/> --></head>
+<body>
+    <!-- <div class="filter_options">
+		<input class="filter_button" name="name" id="a_button" type="checkbox"  value="Vietnamese">a</input><br>
+		<input class="filter_button" name="name" id="b_button" type="checkbox"  value="Mexican">b</input><br>
+		<input class="filter_button" name="name" id="c_button" type="checkbox"  value="Ethiopian">c</input><br>
+		</div> -->    
+	<div id="title">EatSpeak: Denver</div>
+	<div id="desc">
+		<p>In Denver, like many cities, restaurants and businesses tend to cluster by ethnicity. But in the contemporary city, do residential patterns still follow the same clustering tendencies?
+			This map shows a heat map representing those that speak a given language at home and circles showing locations of businesses of the same ethnicity. Enjoy!</p> 
+			<form method="post">
+			    <select id="dropdown" name="dropdown">
+			    	<option value="">Choose One</option>
+			        <option value="Vietnamese">Vietnamese</option>
+			        <option value="Chinese">Chinese</option>
+			        <option value="Japanese">Japanese</option>
+			        <option value="Korean">Korean</option>
+			        <option value="Mexican">Mexican</option>
+			        <option value="African">African</option>
+			        <option value="Russian">Russian</option>
+			        <option value="Indian">Indian</option>
+
+			    </select>
+			</form>
+			</div>
+    <div id="map" style="width: 100%; height: 800px"></div>
+    <div id="anno"></div>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>    
+    <script type="text/javascript" src="../d3/d3.min.js"></script>
+    <script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"> </script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+	<link rel="stylesheet" type="text/css" href="../map.css"> 
+    <!-- <script src="geotoarray.js"></script> -->
+    <!-- <script src="geotoarrayMex.js"></script> -->    
+    <script src="arrays/vietnamesearray.js"></script>
+    <script src="arrays/africanarray.js"></script>
+    <script src="arrays/chinesearray.js"></script>
+    <script src="arrays/indianarrayadj.js"></script>
+        <script src="arrays/japanesearray.js"></script>
+        <script src="arrays/koreanarray.js"></script>
+            <script src="arrays/russianarray.js"></script>
+                <script src="arrays/Mexicanarray.js"></script>
+    <script>
+	
+	
+
+ $(function() {
+   
+	var layer = new L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+		attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+		subdomains: '0123',
+		minZoom: 2,
+		maxZoom: 18
+		});	
+		
+	// var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+	// attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	// subdomains: '0123',
+		// minZoom: 2,
+		// maxZoom: 18
+		// });		
+	
+	var map = new L.Map("map", {
+	    center: new L.LatLng(39.737567 , -104.984718),
+	    zoom: 11,
+	    opacity: .5
+		});
+		
+	var heatLayers = new L.LayerGroup().addTo(map);
+	
+	map.addLayer(layer);
+		var heatViet = new L.heatLayer(heatVietnamese,{
+		        opacity: .5,
+		        radius: 10,
+		        blur: 10, 
+		        maxZoom: 20,
+		        max: .2,
+		        gradient: {.3: "rgba(246, 71, 71, 0.08)", 1: "rgba(246, 71, 71, 0.1)" }
+		        // "#F2784B"
+		    });
+		
+		var heatMex = new L.heatLayer(heatMexican,{
+		        opacity: .5,
+		        radius: 10,
+		        blur: 10, 
+		        maxZoom: 20,
+		        max: .2,
+		        gradient: {.3: "rgba(237, 242, 43, 0.98)", 1: "rgba(237, 242, 43, .1)" }
+		        // "#F2784B"
+		    });
+
+		var heatAfr = new L.heatLayer(heatAfrican,{
+		        opacity: .5,
+		        radius: 10,
+		        blur: 10, 
+		        maxZoom: 20,
+		        max: .2,
+		        gradient: {.3: "rgba(83, 211, 30, 0.98)", 1: "rgba(83, 211, 30, 0.1)" }
+		        // "#F2784B"
+		    });
+
+		var heatRus = new L.heatLayer(heatRussian,{
+		        opacity: .5,
+		        radius: 10,
+		        blur: 10, 
+		        maxZoom: 20,
+		        max: .2,
+		        gradient: {.3: "rgba(83, 211, 30, 0.98)", 1: "rgba(83, 211, 30, 1)" }
+		        // "#F2784B"
+		    });
+		
+		var heatInd = new L.heatLayer(heatIndian,{
+		         opacity: .5,
+		        radius: 10,
+		        blur: 10, 
+		        maxZoom: 20,
+		        max: .2,
+		        gradient: {.3: "rgba(237, 242, 43, 0.98)", 1: "rgba(237, 242, 43, .1)" }
+		        // "#F2784B"
+		    });
+		var heatKor= new L.heatLayer(heatKorean,{
+		        opacity: .5,
+		        radius: 10,
+		        blur: 10, 
+		        maxZoom: 20,
+		        max: .8,
+		        gradient: {.3: "rgba(200, 242, 73, 0.98)", 1: "rgba(200, 242, 73, .8)" }
+		        // "#F2784B"
+		    });
+		var heatJap= new L.heatLayer(heatJapanese,{
+		        opacity: .5,
+		        radius: 10,
+		        blur: 10, 
+		        maxZoom: 20,
+		        max: .8,
+		        gradient: {.3: "rgba(200, 242, 73, 0.98)", 1: "rgba(200, 242, 73, .8)" }
+		        // "#F2784B"
+		    });
+		var heatChi= new L.heatLayer(heatChinese,{
+		        opacity: .5,
+		        radius: 10,
+		        blur: 10, 
+		        maxZoom: 20,
+		        max: .8,
+		        gradient: {.3: "rgba(200, 242, 73, 0.98)", 1: "rgba(200, 242, 73, .8)" }
+		        // "#F2784B"
+		    });
+
+
+	function heatMap(type) {
+		
+		if (type === undefined) {
+		type = "Vietnamese";
+		}
+		else {
+			type == type;
+		}	
+
+		    	
+		if (type == "Vietnamese") {  	
+		  heatLayers.clearLayers();
+		  heatViet.addTo(heatLayers);
+	    }	
+	    else if (type == "Mexican")	{
+		  heatLayers.clearLayers();
+		  heatMex.addTo(heatLayers);
+	    }
+	    else if (type == "African")	{
+		  heatLayers.clearLayers();
+		  heatAfr.addTo(heatLayers);
+	    }
+	    else if (type == "Russian")	{
+		  heatLayers.clearLayers();
+		  heatRus.addTo(heatLayers);
+	    }
+	    else if (type == "Indian")	{
+		  heatLayers.clearLayers();
+		  heatInd.addTo(heatLayers);
+	    }
+	    else if (type == "Korean")	{
+		  heatLayers.clearLayers();
+		  heatKor.addTo(heatLayers);
+	    }
+	    else if (type == "Chinese")	{
+		  heatLayers.clearLayers();
+		  heatChi.addTo(heatLayers);
+	    }
+	    else if (type == "Japanese")	{
+		  heatLayers.clearLayers();
+		  heatJap.addTo(heatLayers);
+	    }
+	    
+	    else {}
+    }   
+//Let the D3 begin!    
+
+//Start the svg			
+	map._initPathRoot()    
+
+//Create Annotation Display
+	var annosvg = d3.select("#anno").append("svg").attr("width", 300).attr("height", 100);
+	var reviewsNum = annosvg.append("text");
+	var reviewsText = annosvg.append("text");
+    var nameText = annosvg.append("text");
+
+    
+	var mainSvg = d3.select("#map").select("svg"), 
+			g = mainSvg.append("g").attr("class", "cir");	
+ 
+ 
+ 		// var choice = document.getElementById('dropdown');
+		// var type = choice.value;
+	    // console.log("choice value: " + type);
+	       
+	function d3Update(type) {
+	if (type === undefined) {
+		type = "Vietnamese";
+	}
+	else {
+		type == type;
+		console.log(type);
+		}
+
+
+
+	d3.csv("denverrestaurants.csv", function(datacsv) {
+		datacsv.forEach(function(d) {
+			d.LatLng = new L.LatLng(d.Lat,d.Lon)})	
+			g.selectAll("circle").remove();
+			var circle = g.selectAll("circle")
+				   .data(datacsv.filter(function(d) { 
+               			return d.Category === type;
+         
+               			}))	
+				   .enter()
+				   .append("circle");
+				   
+               	
+    			// .attr("display", display);
+           		
+
+
+						
+			var max = d3.max(datacsv, function(d) { return +d.Reviews;});
+			var min = d3.min(datacsv, function(d) {	return +d.Reviews;});  	   
+			var oScale = d3.scale.linear()
+				   .domain([min, max])
+				   .range([75,25]);
+				   
+			function update() {
+				  circle.attr("cx",function(d) { return map.latLngToLayerPoint(d.LatLng).x})
+				  circle.attr("cy",function(d) { return map.latLngToLayerPoint(d.LatLng).y})
+				  circle.attr("r", function(d) { 
+				  	if (d.Reviews > 10) { return Math.sqrt(parseInt(d.Reviews) * 0.5); }
+				  	else { return 3; }
+				  	})
+				  circle.attr("callit", function(d) {return d.Name})
+				  circle.style("fill", "white")
+				  circle.style("stroke", "black")
+				  circle.style("opacity", function(d) { return Math.sqrt(oScale(d.Reviews) * .003)})
+				  circle.on("mouseover", function(d) {
+					d3.select(this)
+			          .transition()
+			          .duration(1000)
+			          .ease("elastic")
+			          .style("opacity", .6)
+			          .attr("r", function(d) {
+			   			return Math.sqrt(parseInt(d.Reviews) * 4);
+		  				});
+					reviewsNum
+					  .text(d.Reviews)
+					  .attr("class", "numshow")
+					  .attr("x", 5)
+					  .attr("y", 45)
+					  .attr("font-family", "sans-serif")
+					  .attr("font-size", "11px");
+					reviewsText
+					  .text("Reviews")
+					  .attr("class", "reviewsshow")
+					  .attr("x", 5)
+					  .attr("y", 60)
+					  .attr("font-family", "sans-serif")
+					  .attr("font-size", "11px");
+					 nameText
+					  .text(d.Name)
+					  .attr("class", "nameshow")
+					  .attr("x", 5)
+					  .attr("y", 75)
+					  .attr("font-family", "sans-serif")
+					  .attr("font-size", "6px");
+				});
+					
+				circle.on("mouseout", function() {		
+					//Remove the tooltip
+					reviewsNum
+					  .attr("class", "tooltiphide");
+					reviewsText
+					  .attr("class", "tooltiphide");
+					nameText
+					  .attr("class", "tooltiphide");
+					d3.select(this)
+				      .transition()
+			          .duration(500)
+			          .attr("r", function(d) { if (d.Reviews > 10) { return Math.sqrt(parseInt(d.Reviews) * 0.5); }
+				  	else { return 3; }
+				  	})
+			  		  .style("opacity", function(d) { return Math.sqrt(oScale(d.Reviews) * .003)});
+				})
+				  
+				  ;
+				  }
+			map.on("viewreset", update);
+			update();
+			
+			
+	})			 
+// });   
+	}
+
+	
+	d3.select('#dropdown')
+  	.on('change', function() {
+    type = d3.select(this).property('value');
+    heatMap(type);
+    $(".leaflet-heatmap-layer").css("z-index","-500");
+    d3Update(type);
+    console.log(type);
+    
+ 
+    
+}); 
+});
+
+	
+ 
+    </script>
+	
+</body>
+</html>

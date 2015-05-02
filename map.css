@@ -1,0 +1,66 @@
+#title {
+	font-family:Helvetica Neue;
+	font-weight:600;
+}
+
+#desc {
+	font-family:Helvetica Neue;
+	font-size: 80%;
+	font-weight:400;
+	width: 600px;
+	margin-bottom: 25px;
+
+}
+
+#desc > p {
+	margin-top: 5px;
+}
+
+#map {
+	height: 800px;
+	width: 600px;
+	float:left;
+	border: 2px;
+}
+#anno {
+	height: 100px;
+	width: 300px;
+	float: left;
+	border: 2px;
+}
+
+.correct {
+	fill: red;
+}
+.numshow {
+	font-family: Century Gothic;
+	font-size: 350%;
+	font-weight:bold;
+	stroke: #34282C;
+	stroke-width: 1;
+	fill: none;
+	text-anchor: start;
+	display:block;
+}
+
+.reviewsshow {
+	font-family: Century Gothic;
+	font-size: 110%;
+	font-weight:bold;
+	stroke: #34282C;
+	fill: none;
+	stroke-width: .5;
+	text-anchor: start;
+	display:block;
+}
+.nameshow {
+	font-family: Century Gothic;
+	font-size: 80%;
+	fill: #34282C;
+	text-anchor: start;
+	display:block;
+}
+
+.tooltiphide {
+	display: none;
+}
