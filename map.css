@@ -1,31 +1,70 @@
+
+#top {
+	height: 4em;
+}
+
 #title {
-	font-family:Helvetica Neue;
-	font-weight:600;
+  font-family: Helvetica Neue;
+  font-weight: 600;
+  font-size: 250%;
+  margin: .12em 0 .25em .12em;
+  display: inline;
+  float: left;
+}
+
+
+#nav {
+	height: 2em;
+	float: right;
+	background-color: azure;
+	margin: 1.12em 0 .25em .12em;
+}
+
+
+
+form {
+	display: inline;
 }
 
 #desc {
-	font-family:Helvetica Neue;
+	font-family:Georgia;
 	font-size: 80%;
 	font-weight:400;
-	width: 600px;
-	margin-bottom: 25px;
-
+	width: 25%;
+	display: inline;
+	float: left;
+	height: 100%;
 }
 
 #desc > p {
 	margin-top: 5px;
 }
 
-#map {
-	height: 800px;
-	width: 600px;
-	float:left;
-	border: 2px;
+
+.panel-container, .panel {
+	display: none;
 }
+
+.panel:first-of-type {
+	display: block;
+}
+
+#map {
+	height: 100%;
+	width: 75%;
+	border: 2px;
+	float: left;
+}
+
+#maincontainer {
+	width:100%;
+	background-color: azure;
+	height: 700px;
+}
+
 #anno {
 	height: 100px;
 	width: 300px;
-	float: left;
 	border: 2px;
 }
 
