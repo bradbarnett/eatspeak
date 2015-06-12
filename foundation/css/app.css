@@ -1,7 +1,33 @@
+/*FOUNDATION CUSTOMIZATIONS*/
 
-#top {
-	height: 4em;
+.top-bar {
+	background-color: rgba(255,255,255,.7);
+	height: 55px;
 }
+
+#nav {
+	float: right;
+	margin-right: 30px;
+}
+
+#nav button {
+  border-radius: 5px;
+  padding: 5px 12px;
+  background-color: transparent;
+  color: rgb(52, 164, 223);
+  border: 1px solid;
+  margin-right:5px;
+}
+
+section.shell {
+	display: none;
+}
+
+body {
+	background-color: #CDD2D4;
+}
+
+/*OLDER CODE*/
 
 #title {
   font-family: Helvetica Neue;
@@ -11,15 +37,6 @@
   display: inline;
   float: left;
 }
-
-
-#nav {
-	height: 2em;
-	float: right;
-	background-color: azure;
-	margin: 1.12em 0 .25em .12em;
-}
-
 
 
 form {
@@ -49,13 +66,30 @@ form {
 	display: block;
 }
 
-#map {
-	height: 100%;
+#mapsBox {
+	height: 575px;
 	width: 75%;
-	border: 2px;
-	float: left;
+	margin-top: 75px;
+	border: 0px black solid;
+	float: right;
 }
 
+.maps {
+  height: 50%;
+  width: 30%;
+  margin: 0px 5px 15px 25px;
+  float: left;
+  font-family: Helvetica Neue;
+  font-size: 80%;
+  font-weight: 500;
+}
+
+.mapcontent {
+  height: 95%;
+  width: 100%;
+  float: left;
+}
+	
 #maincontainer {
 	width:100%;
 	background-color: azure;

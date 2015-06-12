@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+	<!-- <link rel="stylesheet" href="leafletd3.css"/> --></head>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+     <link rel="stylesheet" href="../../foundation/css/foundation.css" />
+    <script src="js/vendor/modernizr.js"></script>
+<body>
+    <!-- <div class="filter_options">
+		<input class="filter_button" name="name" id="a_button" type="checkbox"  value="Vietnamese">a</input><br>
+		<input class="filter_button" name="name" id="b_button" type="checkbox"  value="Mexican">b</input><br>
+		<input class="filter_button" name="name" id="c_button" type="checkbox"  value="Ethiopian">c</input><br>
+		</div> -->    
+<div class="fixed">	
+	<nav class="top-bar" data-topbar role="navigation">
+		<div id="title">EatSpeak: Seattle</div>
+			
+		<div id="nav">
+			<button class="ethnicity" value="Vietnamese">Vietnamese</button>
+<button class="ethnicity" value="Chinese">Chinese</button>
+<button class="ethnicity" value="Japanese">Japanese</button>
+<button class="ethnicity" value="Korean">Korean</button>
+<button class="ethnicity" value="Mexican">Mexican</button>
+<button class="ethnicity" value="African">African</button>
+<button class="ethnicity" value="Russian">Russian</button>
+<button class="ethnicity" value="Indian">Indian</button>
+<button class="story" id="rollCall">Roll Call</button>
+<button class="story" id="intheValley">In the Valley</button>
+<button class="story" id="companyTown">Company Town</button>
+<button class="story" id="historyLessons">History Lessons</button>
+<button class="story" id="explore">Explore!</button>
+<button class="story" id="university">!!!</button>
+
+			
+			<!-- <form method="post">
+			    <select id="dropdown" name="dropdown">
+			    	<option value="">Choose One</option>
+			        <option value="Vietnamese">Vietnamese</option>
+			        <option value="Chinese">Chinese</option>
+			        <option value="Japanese">Japanese</option>
+			        <option value="Korean">Korean</option>
+			        <option value="Mexican">Mexican</option>
+			        <option value="African">African</option>
+			        <option value="Russian">Russian</option>
+			        <option value="Indian">Indian</option>
+			    </select>
+			</form> -->
+		</div>
+	</nav>
+</div>	
+	<div class="panel ">
+
+	</div>
+	<div id="map"></div>
+	</div>
+    <div id="anno"></div>
+    
+    
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>    
+    <script type="text/javascript" src="../d3/d3.min.js"></script>
+    <script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"> </script>
+    <script src="../scripts/Leaflet.Coordinates-master/dist/Leaflet.Coordinates-0.1.4.min.js"> </script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+	<link rel="stylesheet" type="text/css" href="../../foundation/css/app.css"> 
+	<link rel="stylesheet" type"text/css" href="../scripts/Leaflet.Coordinates-master/dist/Leaflet.Coordinates-0.1.4.css">
+    <!-- <script src="geotoarray.js"></script> -->
+    <!-- <script src="geotoarrayMex.js"></script> -->    
+    <script src="arrays/africanarray.js"></script>
+    <script src="arrays/chinesearray.js"></script>
+    <script src="arrays/indianarray.js"></script>
+    <script src="arrays/japanesearray.js"></script>
+    <script src="arrays/koreanarray.js"></script>
+    <script src="arrays/russianarray.js"></script>
+    <script src="arrays/Mexicanarray.js"></script>
+    <script src="arrays/vietnamesearray.js"></script>
+    <script>
+	
+	
+
+ $(function() {
+ 				
+	var panelVal;
+   
+	// var layer = new L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+	// 	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+	// 	subdomains: '0123',
+	// 	minZoom: 2,
+	// 	maxZoom: 18
+	// 	});	
+		
+	// var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+	// attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	// subdomains: '0123',
+		// minZoom: 2,
+		// maxZoom: 18
+		// });		
+	
+	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+});
+
+	var map = new L.Map("map", {
+	    center: new L.LatLng(47.6063889,-122.3308333),
+	    zoom: 11,
+	    opacity: .5
+		});
+		
+	var heatLayers = new L.LayerGroup().addTo(map);
+	
+	L.control.coordinates({
+    position:"bottomleft", //optional default "bootomright"
+    decimals:2, //optional default 4
+    decimalSeperator:".", //optional default "."
+    labelTemplateLat:"Latitude: {y}", //optional default "Lat: {y}"
+	    labelTemplateLng:"Longitude: {x}", //optional default "Lng: {x}"
+    enableUserInput:true, //optional default true
+    useDMS:false, //optional default false
+    useLatLngOrder: true //ordering of labels, default false-> lng-lat
+}).addTo(map);
+
+	map.addLayer(layer);
+		var heatViet = new L.heatLayer(heatVietnamese,{
+		        radius: 10,
+		        blur: 25, 
+		        maxZoom: 20,
+		        maxOpacity: 1,
+		        minOpacity: .1,
+		        max: .2,
+   		        gradient: {.3: "steelblue", .4: "lightyellow", .7: "orange", 1: "yellow"}
+
+		        // gradient: {.1: "rgb(242, 120, 75)", .8: "rgba(242, 120, 75, .5)", 1: "rgba(242, 120, 75, .7)"}
+		        // "#F2784B"
+		    });
+		var heatMex = new L.heatLayer(heatMexican,{
+		        radius: 10,
+		        blur: 25, 
+		        maxZoom: 20,
+		        maxOpacity: 1,
+		        minOpacity: .1,
+		        max: .2,
+   		        gradient: {.3: "steelblue", .4: "lightyellow", .7: "orange", 1: "yellow"}
+	        // "#F2784B"
+		    });
+		var heatAfr = new L.heatLayer(heatAfrican,{
+		        radius: 10,
+		        blur: 25, 
+		        maxZoom: 20,
+		        maxOpacity: 1,
+		        minOpacity: .1,
+		        max: .2,
+   		        gradient: {.3: "steelblue", .4: "lightyellow", .7: "orange", 1: "yellow"}
+		        // "#F2784B"
+		    });
+		var heatRus = new L.heatLayer(heatRussian,{
+		        radius: 10,
+		        blur: 25, 
+		        maxZoom: 20,
+		        maxOpacity: 1,
+		        minOpacity: .1,
+		        max: .2,
+   		        gradient: {.3: "steelblue", .4: "lightyellow", .7: "orange", 1: "yellow"}
+		        // "#F2784B"
+		    });
+		var heatInd = new L.heatLayer(heatIndian,{
+		        radius: 10,
+		        blur: 25, 
+		        maxZoom: 20,
+		        maxOpacity: 1,
+		        minOpacity: .1,
+		        max: .2,
+   		        gradient: {.3: "steelblue", .4: "lightyellow", .7: "orange", 1: "yellow"}
+		        // "#F2784B"
+		    });
+		var heatKor= new L.heatLayer(heatKorean,{
+		        radius: 10,
+		        blur: 25, 
+		        maxZoom: 20,
+		        maxOpacity: 1,
+		        minOpacity: .1,
+		        max: .2,
+   		        gradient: {.3: "steelblue", .4: "lightyellow", .7: "orange", 1: "yellow"}
+		        // "#F2784B"
+		    });
+		var heatJap= new L.heatLayer(heatJapanese,{
+		        radius: 10,
+		        blur: 25, 
+		        maxZoom: 20,
+		        maxOpacity: 1,
+		        minOpacity: .1,
+		        max: .2,
+   		        gradient: {.3: "steelblue", .4: "lightyellow", .7: "orange", 1: "yellow"}
+	        // "#F2784B"
+		    });
+		var heatChi= new L.heatLayer(heatChinese,{
+		        radius: 10,
+		        blur: 25, 
+		        maxZoom: 20,
+		        maxOpacity: 1,
+		        minOpacity: .1,
+		        max: .2,
+   		        gradient: {.3: "steelblue", .4: "lightyellow", .7: "orange", 1: "yellow"}
+		        // "#F2784B"
+		    });
+	function heatMap(type) {
+		
+		if (type === undefined) {
+		type = "Vietnamese";
+		}
+		else {
+			type == type;
+		}	
+		    	
+		if (type == "Vietnamese") {  	
+		  heatLayers.clearLayers();
+		  heatViet.addTo(heatLayers);
+	    }	
+	    else if (type == "Mexican")	{
+		  heatLayers.clearLayers();
+		  heatMex.addTo(heatLayers);
+	    }
+	    else if (type == "African")	{
+		  heatLayers.clearLayers();
+		  heatAfr.addTo(heatLayers);
+	    }
+	    else if (type == "Russian")	{
+		  heatLayers.clearLayers();
+		  heatRus.addTo(heatLayers);
+	    }
+	    else if (type == "Indian")	{
+		  heatLayers.clearLayers();
+		  heatInd.addTo(heatLayers);
+	    }
+	    else if (type == "Korean")	{
+		  heatLayers.clearLayers();
+		  heatKor.addTo(heatLayers);
+	    }
+	    else if (type == "Chinese")	{
+		  heatLayers.clearLayers();
+		  heatChi.addTo(heatLayers);
+	    }
+	    else if (type == "Japanese")	{
+		  heatLayers.clearLayers();
+		  heatJap.addTo(heatLayers);
+	    }
+	    
+	    else {}
+    }   
+
+	
+	var universityBounds = [[47.63,-122.36],[47.69,-122.23]];
+	var techBounds = [[47.57-122.35],[47.72,-122.04]];
+
+	$('#university').click(function() {
+		map.fitBounds(universityBounds, 9);
+		heatLayers.clearLayers();
+		heatRus.addTo(heatLayers);		
+		
+		heatKor.addTo(heatLayers);
+heatChi.addTo(heatLayers);
+		})
+
+	$('#tech').click(function() {
+		map.fitBound(techBounds, 4);
+		heatInd.addTo(heatLayers);
+		})
+//Let the D3 begin!    
+
+//Start the svg			
+	map._initPathRoot()    
+
+//Create Annotation Display
+	var annosvg = d3.select("#anno").append("svg").attr("width", 300).attr("height", 100);
+	var reviewsNum = annosvg.append("text");
+	var reviewsText = annosvg.append("text");
+    var nameText = annosvg.append("text");
+
+    
+	var mainSvg = d3.select("#map").select("svg"); 
+	var gYelp = mainSvg.append("g").attr("class", "gYelp");
+	var gPOI = mainSvg.append("g").attr("class", "gPOI");	
+
+	var gradient = mainSvg.append("svg:defs")
+    .append("svg:radialGradient")
+    .attr("id", "gradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "100%")
+    .attr("spreadMethod", "pad");
+
+	gradient.append("svg:stop")
+	    .attr("offset", "0%")
+	    .attr("stop-color", "#2c3e50")
+	    .attr("stop-opacity", .8);
+
+	gradient.append("svg:stop")
+	    .attr("offset", "100%")
+	    .attr("stop-color", "white")
+	    .attr("stop-opacity", .1);
+        
+	function d3Update(type) {
+		if (type === undefined) {
+			type = "Vietnamese";
+			}
+		else {
+			type == type;
+			console.log("d3Update fired for " + type);
+			}
+	
+		d3.csv("seattlerestaurants.csv", function(datacsv) {
+			datacsv.forEach(function(d) {
+				d.LatLng = new L.LatLng(d.Lat,d.Lon)})	
+				gYelp.selectAll("circle").remove();
+
+				var circleYelp = gYelp.selectAll("circle")
+					.data(datacsv.filter(function(d) { 
+	               		return d.Category === type;
+	               		}))	
+					.enter()
+					.append("circle");
+		
+				var max = d3.max(datacsv, function(d) { return +d.Reviews;});
+				var min = d3.min(datacsv, function(d) {	return +d.Reviews;});  	   
+				var oScale = d3.scale.linear()
+					.domain([min, max])
+					.range([75,25]);
+					   
+			function update() {
+				circleYelp.attr("cx",function(d) { return map.latLngToLayerPoint(d.LatLng).x})
+				circleYelp.attr("cy",function(d) { return map.latLngToLayerPoint(d.LatLng).y})
+				circleYelp.attr("r", function(d) { 
+					if (d.Reviews > 10) { return Math.sqrt(parseInt(d.Reviews) * 0.5); }
+				  	else if (d.Reviews > 50) { return Math.sqrt(parseInt(d.Reviews) * .2);}
+				  	else { return 10; }
+				  	})
+				circleYelp.attr("callit", function(d) {return d.Name})
+				circleYelp.style("fill", "url(#gradient)")
+				circleYelp.style("stroke", "rgba(255,255,255,.1)")
+				circleYelp.style("opacity", function(d) { return Math.sqrt(oScale(d.Reviews) * .15)})
+				circleYelp.on("mouseover", function(d) {
+					d3.select(this)
+			        	.transition()
+			          	.duration(1000)
+			          	.ease("elastic")
+			          	.style("opacity", .6)
+			          	.attr("r", function(d) {
+			   				return Math.sqrt(parseInt(d.Reviews) * 4);
+	  					});
+					reviewsNum
+						.text(d.Reviews)
+					  	.attr("class", "numshow")
+					  	.attr("x", 5)
+					  	.attr("y", 45)
+					  	.attr("font-family", "sans-serif")
+					  	.attr("font-size", "11px");
+					reviewsText
+					  	.text("Reviews")
+					  	.attr("class", "reviewsshow")
+					  	.attr("x", 5)
+					  	.attr("y", 60)
+					  	.attr("font-family", "sans-serif")
+					  	.attr("font-size", "11px");
+					 nameText
+					  	.text(d.Name)
+					  	.attr("class", "nameshow")
+					  	.attr("x", 5)
+					  	.attr("y", 75)
+					  	.attr("font-family", "sans-serif")
+					  	.attr("font-size", "6px");
+				});
+					
+				circleYelp.on("mouseout", function() {		
+					//Remove the tooltip
+					reviewsNum
+						.attr("class", "tooltiphide");
+					reviewsText
+					  	.attr("class", "tooltiphide");
+					nameText
+					  	.attr("class", "tooltiphide");
+					d3.select(this)
+				      	.transition()
+			          	.duration(500)
+			          	.attr("r", function(d) { if (d.Reviews > 10) { return Math.sqrt(parseInt(d.Reviews) * 0.5); }
+				  			else { return 3; }
+		  			})
+			  		  .style("opacity", function(d) { return Math.sqrt(oScale(d.Reviews) * .05)});
+				});
+			}
+			map.on("viewreset", update);
+			update();		
+		})			    
+	
+		// d3.json("/Seattle/poi/POIvietnamese.geojson", function(datageojson) {
+		// 	datageojson.features.forEach(function(d) {
+		// 		d.LatLng = new L.LatLng(d.geometry.coordinates[1],d.geometry.coordinates[0]);
+				
+		// 	})	
+		// 	var circlePOI = gPOI.selectAll("circle")
+		// 	   .data(datageojson.features)
+		// 	   .enter()
+		// 	   .append("circle")
+		// 	   .style("fill","none")
+		// 	   .style("stroke","black")
+		// 	   .style("stroke-width", "1.5px")	
+		// 	   .style("stroke-dasharray", "7,5")		   
+		// 	   .style("opacity", function(d) {
+		// 	   		if (d.properties.id == panelVal && d.properties.ethnicity == type) {
+		// 	   			return 1
+		// 	   		}
+		// 	   		else {
+		// 	   			return .25
+		// 	   		}
+		// 	   		})
+		// 	   .attr("r", 25)
+		// 	   .attr("id", function(d) { return d.properties.id})
+		// 	   .attr("cx",function(d) { return map.latLngToLayerPoint(d.LatLng).x})
+		// 	   .attr("cy",function(d) { return map.latLngToLayerPoint(d.LatLng).y});
+			
+		// 	map.on("viewreset", update);
+	 //  		update();
+	
+	 //  		function update() {
+		// 		circlePOI.attr("cx",function(d) { return map.latLngToLayerPoint(d.LatLng).x})
+		// 	 	circlePOI.attr("cy",function(d) { return map.latLngToLayerPoint(d.LatLng).y})
+		// 	}
+			
+		// 	function updatePOI() {
+		// 		console.log("POI " + panelVal);
+		// 		var circlePOI = gPOI.selectAll("circle") 
+		// 			.style("opacity", function(d) { 
+		// 	   		if (d.properties.id == panelVal) {
+		// 	   			return 1
+		// 	   		}
+		// 	   		else {
+		// 	   			return .25
+		// 	   		}
+		// 	   	});				
+		// 	}
+		// 	// $("#"+type).find("#nav-panel").children(":button").click(function() {			
+		// 	$("#"+type).find(":button").click(function() {
+		// 		updatePOI();
+		// 		$(".panel").hide();
+		// 		$("#"+type).find(".panel#"+panelVal).show();	
+			
+		// 	});
+		// })			 
+	}
+
+	
+	d3.selectAll('.ethnicity')
+	  	.on('click', function() {
+		    type = d3.select(this).property('value');
+		    heatMap(type);
+		    $(".leaflet-heatmap-layer").css("z-index","-500");
+		    panelVal = 1;
+		    panelUpdate(type);
+		    d3Update(type);
+		    $(".panel-container").hide();
+			$(".panel-container#"+type).show();
+			$(".panel-container#"+type).find("#1.panel").show();
+
+		}); 
+	
+	function panelUpdate(type) { 	
+		$("#"+type).find(".prev").unbind("click").click(function(){
+
+			var previousVal = panelVal;
+			if (previousVal > 1) {
+				previousVal = previousVal - 1;
+				$(this).val(previousVal);
+			}
+			else  {
+				$(this).val(previousVal);
+			}
+			panelVal = previousVal;
+			console.log("before " + panelVal);
+		});
+		
+		$("#"+type).find(".next").unbind("click").click(function(){
+			
+			var nextVal = panelVal;
+			if (nextVal < 4) {
+				nextVal = nextVal + 1;
+				$(this).val(nextVal);
+			}
+			else  {
+				$(this).val(nextVal);
+			}
+			panelVal = nextVal;
+			console.log("after " + panelVal);
+		});
+		
+
+	}
+
+
+});
+ 
+</script>
+<script src="js/vendor/jquery.js"></script>
+<script src="js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+</script>	
+</body>
+</html>

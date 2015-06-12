@@ -1,0 +1,48 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation | Welcome</title>
+    <link rel="stylesheet" href="../../foundation/css/foundation.css" />
+    <script src="../../foundation/js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    <nav><button class="story" id="rollCall">Roll Call</button>
+      <button class="story" id="intheValley">In the Valley</button>
+      <button class="story" id="companyTown">Company Town</button>
+      <button class="story" id="historyLessons">History Lessons</button>
+      <button class="story" id="explore">Explore!</button>
+      <button class="story" id="university">!!!</button>
+    </nav>
+    <div class="row">
+      <section id="splash">
+      Section Splash
+      </section>
+      <section class="shell" id="rollCall">
+      Section Roll Call
+      </section>
+      <section class="shell" id="intheValley">
+      Section In the Valley
+      </section>
+    </div>
+    <link rel="stylesheet" type="text/css" href="../../foundation/css/app.css"> 
+
+    <script src="../../foundation/js/vendor/jquery.js"></script>
+    <script src="../../foundation/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+    <script>
+      $(function() {
+        $(".story").click(function() {
+          var currentPage;
+          currentPage = this.id; 
+          $("section").hide();
+          $(".shell#" + currentPage).show();
+          console.log(currentPage);
+        })  
+      })
+    </script>
+  </body>
+</html>
