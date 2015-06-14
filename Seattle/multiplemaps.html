@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
      <link rel="stylesheet" href="../../foundation/css/foundation.css" />
+     <link href='http://fonts.googleapis.com/css?family=Vollkorn:700' rel='stylesheet' type='text/css'>
     <script src="js/vendor/modernizr.js"></script>
 <body>
     <!-- <div class="filter_options">
@@ -51,8 +52,9 @@
 		</div>
 	</nav>
 </div>	
-	<div class="panel ">
-
+	<div class="leftpanel">
+		<div class="sectiontitle">Roll Call</div>
+		<div class="referencemap" id="refmap"></div>
 	</div>
 	<div id="mapsBox">
 
@@ -105,6 +107,8 @@
 		// maxZoom: 18
 		// });		
 	
+
+
 	var layer1 = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
 	subdomains: 'abcd',
@@ -303,7 +307,23 @@ mapChinese.sync(mapAfrican);
 mapChinese.sync(mapIndian);
 	
 
+var referencemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+	maxZoom: 16
+});
 	
+var refmap = new L.Map("refmap", {
+    center: new L.LatLng(47.6063889,-122.3308333),
+    zoom: 9, zoomControl: false,
+    opacity: .5, attributionControl: false
+	});	
+
+	refmap.addLayer(referencemap);
+
+
+var mainBounds = mapChinese.getBounds();
+var refRect = new L.rectangle(mainBounds, {color: "#ff7800", weight: 1}).addTo(refmap);
+
 
 	function heatMap(type) {
 		

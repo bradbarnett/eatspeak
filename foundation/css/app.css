@@ -30,12 +30,13 @@ body {
 /*OLDER CODE*/
 
 #title {
-  font-family: Helvetica Neue;
+  font-family: Helvetica Neue, Arial, Sans serif;
   font-weight: 600;
-  font-size: 250%;
+  font-size: 80%;
   margin: .12em 0 .25em .12em;
   display: inline;
   float: left;
+  padding-left: 10px;
 }
 
 
@@ -89,7 +90,35 @@ form {
   width: 100%;
   float: left;
 }
-	
+
+.leftpanel {
+	width:20%;
+	height: 575px;
+	margin-top:75px;
+	float:left;
+	padding:0 0 0 15px;
+	position:relative;
+}
+
+.sectiontitle {
+	font-family: 'Vollkorn', serif;
+	font-size:150%;
+	font-weight: 600;
+}
+
+.sectiondesc {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans serif;
+	font-size: 90%;
+
+}
+
+.referencemap {
+		width:100%;
+		height:80px;
+		position:absolute;
+		bottom:0;
+}	
+
 #maincontainer {
 	width:100%;
 	background-color: azure;
