@@ -1,8 +1,93 @@
 /*FOUNDATION CUSTOMIZATIONS*/
 
+.has-tip {
+	font-size: 45%;
+	font-style:italic;
+	font-weight: 400;
+
+}
+
+.legend-bar {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5fa4bf+0,f7f2ca+50,f4bd27+100 */
+  width: 5rem;
+  height: 1rem;
+  display: inline-block;
+  background: rgb(95,164,191); /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzVmYTRiZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2Y3ZjJjYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNGJkMjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(left,  rgba(95,164,191,1) 0%, rgba(247,242,202,1) 50%, rgba(244,189,39,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(95,164,191,1)), color-stop(50%,rgba(247,242,202,1)), color-stop(100%,rgba(244,189,39,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  rgba(95,164,191,1) 0%,rgba(247,242,202,1) 50%,rgba(244,189,39,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  rgba(95,164,191,1) 0%,rgba(247,242,202,1) 50%,rgba(244,189,39,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  rgba(95,164,191,1) 0%,rgba(247,242,202,1) 50%,rgba(244,189,39,1) 100%); /* IE10+ */
+  background: linear-gradient(to right,  rgba(95,164,191,1) 0%,rgba(247,242,202,1) 50%,rgba(244,189,39,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5fa4bf', endColorstr='#f4bd27',GradientType=1 ); /* IE6-8 */
+}
+
+.legend-bar-none {
+  width: 2rem;
+  height: 1rem;
+  display: inline-block;
+  background: white;
+  margin-left:.5rem;
+}
+
+.legend-container {
+	margin-left:3rem;
+	margin-bottom: 1rem;
+	text-align:center;
+}
+
+.legend-title {
+	width: 100%;
+	margin: 0 auto;
+	font-size: 85%;
+	text-align:	center;
+	font-weight: 500;
+}
+
+.legend-item {
+	display:inline-block;
+	width: 9rem;
+	margin-right: 1rem;
+}
+
+.ethnicity {
+	width: 6rem;
+	margin-right: 1rem;
+}
+.legend-symbol {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 70%;
+}
+
+#legend-circle {
+  vertical-align: bottom;
+}
+
+#wrap-text {
+	  display: inline-block;
+  width: 50px;
+  line-height: .85;
+  text-align: left;
+}
+
+#legend-bar {
+	width: 14rem;
+}
+
+body {
+	background-color: #CDD2D4;
+	color: rgb(85, 112, 121);
+}
+
 .top-bar {
 	background-color: rgba(255,255,255,.7);
-	height: 55px;
+	height: 30px;
+	line-height: 1rem;
+	padding-top: .5rem;
 }
 
 #nav {
@@ -11,21 +96,162 @@
 }
 
 #nav button {
-  border-radius: 5px;
-  padding: 5px 12px;
+  border-radius: 0;
+  padding: 1px 3px;
   background-color: transparent;
-  color: rgb(52, 164, 223);
-  border: 1px solid;
-  margin-right:5px;
+  color: rgba(99, 141, 155, .6);
+  /* border-right: 1px solid; */
+  margin-right: 5px;
+  font-family: 'baskerville', serif;
+  font-size: 75%;
+  font-weight: 600;
+  transition: border-bottom .3s, color .3s;
+
 }
 
-section.shell {
-	display: none;
+
+#nav button:hover {
+  border-radius: 0;
+  padding: 1px 3px;
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(65, 102, 115);
+  border-bottom: 2px solid;
+  margin-right: 5px;
+  font-family: 'baskerville', serif;
+  font-size: 75%;
+  font-weight: 600;ont-weight: 600;
+  transition: border-bottom .3s, color .3s;
 }
 
-body {
-	background-color: #CDD2D4;
+section {
+	height: 100%;
+	width: 100%;
 }
+
+.section-container {
+	margin:50px 0 50px 25px;
+	text-align: center;
+	height: 100%;
+}
+
+
+.sectiontitle {
+	font-family: 'baskerville', serif;
+	font-size:200%;
+	font-weight: 600;
+	line-height: .75;
+	margin-left: 25px;
+	margin-bottom: 1.5rem;
+	/*border-bottom: 2px solid rgb(99, 141, 155);*/
+}
+
+.titlebox {
+	padding-right: 0rem;
+	padding-bottom: .5rem;
+	border-bottom: 5px solid;
+	display: inline-block;
+}
+
+.sectiondesc {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans serif;
+	font-size: 90%;
+
+}
+
+.map-img {
+	padding-left: 25px;
+	width: 100%;
+	max-width: 1050px;
+}
+.special {
+	font-size: 85%;
+	font-weight: 400;
+	color: rgba(242,55,31,.75);
+	margin-left: 25px;
+ 	vertical-align: top;
+}
+
+.poi {
+	width: 2rem;
+    height: 1rem;
+    display: inline-block;
+    background: none;
+	border: 1px dashed black;
+}
+
+span.special2 {
+	color: rgba(218, 54, 218, .6);
+	padding-left: 25px;
+	vertical-align: top;
+}
+
+span.special3 {
+	color: steelblue;
+	padding-left: 25px;
+	vertical-align: top;
+}
+
+.special-explore {
+	font-size: 85%;
+	font-weight: 400;
+	margin-left: 25px;
+	margin-bottom: 25px	;
+}
+
+.legend {
+	display: inline;
+	padding-right: 25px;
+}
+.chinese {
+	width: 2rem; 
+	height: 1rem; 
+	display: inline-block; 
+	font-size: 120%;
+	background-color:  rgba(161, 133, 80, 0.42);
+	
+}
+
+.vietnamese {
+		width: 2rem; 
+	height: 1rem; 
+	display: inline-block; 
+	font-size: 120%;
+	background-color: yellow;
+}
+
+.korean {
+		width: 2rem; 
+	height: 1rem; 
+	display: inline-block; 
+	font-size: 120%;
+	background-color:  salmon;
+}
+
+.mexican {
+		width: 2rem; 
+	height: 1rem; 
+	display: inline-block; 
+	font-size: 120%;
+	background-color: rgb(38, 184, 106);
+}
+
+.african {
+		width: 2rem; 
+	height: 1rem; 
+	display: inline-block; 
+	font-size: 120%;
+	background-color:  steelblue;
+}
+
+.indian {
+		width: 2rem; 
+	height: 1rem; 
+	display: inline-block; 
+	font-size: 120%;
+	background-color: rgb(218, 54, 218);
+
+}
+
 
 /*OLDER CODE*/
 
@@ -59,6 +285,9 @@ form {
 }
 
 
+
+
+
 .panel-container, .panel {
 	display: none;
 }
@@ -68,9 +297,9 @@ form {
 }
 
 #mapsBox {
-	height: 575px;
-	width: 75%;
-	margin-top: 75px;
+	height: 500px;
+	width: 100%;
+	margin-top: 5px;
 	border: 0px black solid;
 	float: right;
 }
@@ -83,6 +312,26 @@ form {
   font-family: Helvetica Neue;
   font-size: 80%;
   font-weight: 500;
+}
+
+.maps-explore {
+  height: 100%;
+  width: 48%;
+  margin: 0px 5px 0px 0px;
+  float: left;
+  font-family: Helvetica Neue;
+  font-size: 80%;
+  font-weight: 500;
+}
+
+.map-title {
+	font-size: 150%;
+}
+
+#map, #map-explore {
+	height: 600px;
+	width: 800px;
+	float: left;
 }
 
 .mapcontent {
@@ -100,17 +349,7 @@ form {
 	position:relative;
 }
 
-.sectiontitle {
-	font-family: 'Vollkorn', serif;
-	font-size:150%;
-	font-weight: 600;
-}
 
-.sectiondesc {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans serif;
-	font-size: 90%;
-
-}
 
 .referencemap {
 		width:100%;
@@ -165,4 +404,13 @@ form {
 
 .tooltiphide {
 	display: none;
+}
+
+@media only screen and (min-width: 58.75em) {
+.top-bar input, .top-bar select, .top-bar .button, .top-bar button {
+  font-size: 0.875rem;
+  height: inherit;
+  position: relative;
+  top: 0;
+}
 }

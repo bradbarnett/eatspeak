@@ -1,48 +1,1153 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
+<!DOCTYPE html>
+<html>
+<head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+  <!-- <link rel="stylesheet" href="leafletd3.css"/> --></head>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="../../foundation/css/foundation.css" />
-    <script src="../../foundation/js/vendor/modernizr.js"></script>
-  </head>
-  <body>
-    <nav><button class="story" id="rollCall">Roll Call</button>
-      <button class="story" id="intheValley">In the Valley</button>
-      <button class="story" id="companyTown">Company Town</button>
-      <button class="story" id="historyLessons">History Lessons</button>
-      <button class="story" id="explore">Explore!</button>
-      <button class="story" id="university">!!!</button>
-    </nav>
-    <div class="row">
-      <section id="splash">
-      Section Splash
-      </section>
-      <section class="shell" id="rollCall">
-      Section Roll Call
-      </section>
-      <section class="shell" id="intheValley">
-      Section In the Valley
-      </section>
-    </div>
-    <link rel="stylesheet" type="text/css" href="../../foundation/css/app.css"> 
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <script src="js/vendor/modernizr.js"></script>
+<body>
+    <!-- <div class="filter_options">
+    <input class="filter_button" name="name" id="a_button" type="checkbox"  value="Vietnamese">a</input><br>
+    <input class="filter_button" name="name" id="b_button" type="checkbox"  value="Mexican">b</input><br>
+    <input class="filter_button" name="name" id="c_button" type="checkbox"  value="Ethiopian">c</input><br>
+    </div> -->    
+<div class="fixed"> 
+  <nav class="top-bar" data-topbar role="navigation">
+    <div id="title">EatSpeak: Seattle</div>
+      
+    <div id="nav">
+<!--      <button class="ethnicity" value="Vietnamese">Vietnamese</button>
+<button class="ethnicity" value="Chinese">Chinese</button>
+<button class="ethnicity" value="Japanese">Japanese</button>
+<button class="ethnicity" value="Korean">Korean</button>
+<button class="ethnicity" value="Mexican">Mexican</button>
+<button class="ethnicity" value="African">African</button>
+<button class="ethnicity" value="Russian">Russian</button>
+<button class="ethnicity" value="Indian">Indian</button> -->
+<button class="story" id="startHere">Overview</button>
+<button class="story" id="microsoftCampus">Microsoft Campus</button>
+<button class="story" id="internationalDistrict">International District</button>
+<button class="story" id="rainierValley">Rainier Valley</button>
+<button class="story" id="university">UW</button>
 
-    <script src="../../foundation/js/vendor/jquery.js"></script>
-    <script src="../../foundation/js/foundation.min.js"></script>
+
+
+      
+      <!-- <form method="post">
+          <select id="dropdown" name="dropdown">
+            <option value="">Choose One</option>
+              <option value="Vietnamese">Vietnamese</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Japanese">Japanese</option>
+              <option value="Korean">Korean</option>
+              <option value="Mexican">Mexican</option>
+              <option value="African">African</option>
+              <option value="Russian">Russian</option>
+              <option value="Indian">Indian</option>
+          </select>
+      </form> -->
+    </div>
+  </nav>
+
+
+</div>  
+  <section id="startHere">
+    <div class="section-container">
+    <!-- <div class="leftpanel"> -->
+      <div class="sectiontitle">
+      <div class="titlebox">
+      Distribution of Restaurants and Languages
+      </div>
+      </div>
+        <div class="legend-container">
+          <div class="legend-item ethnicity">
+            <div class="legend-symbol">
+               <div class="chinese"></div>
+            </div>
+            <div class="legend-title">
+              Chinese
+            </div>
+          </div>
+          <div class="legend-item ethnicity">
+            <div class="legend-symbol">
+               <div class="vietnamese"></div>
+            </div>
+            <div class="legend-title">
+              Vietnamese
+            </div>
+          </div>
+          <div class="legend-item ethnicity">
+            <div class="legend-symbol">
+               <div class="korean"></div>
+            </div>
+            <div class="legend-title">
+              Korean
+            </div>
+          </div> 
+          <div class="legend-item ethnicity">
+            <div class="legend-symbol">
+               <div class="mexican"></div>
+            </div>
+            <div class="legend-title">
+              Latin American
+            </div>
+          </div>
+          <div class="legend-item ethnicity">
+            <div class="legend-symbol">
+               <div class="african"></div>
+            </div>
+            <div class="legend-title">
+              African
+            </div>
+          </div>
+          <div class="legend-item ethnicity">
+            <div class="legend-symbol">
+               <div class="indian"></div>
+            </div>
+            <div class="legend-title">
+              Indian
+            </div>
+          </div>                               
+      </div> 
+
+
+
+      <div class="special-explore">
+
+      </div>
+   
+    <div id="mapsBox">
+
+      <div class="maps-explore">
+        <div class="map-title">
+          Restaurants 
+          <span data-tooltip aria-haspopup="true" class="has-tip" title="Restaurant data was gathered through the Yelp API using Yelp's categories for restaurant types. Each category shows the first 100 listings for that cuisine.">
+           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+
+   width="22px" height="22px" viewBox="0 0 22 22" enable-background="new 0 0 22 22" xml:space="preserve">
+
+<path id="info-4-icon" d="M255.998,50.001C142.229,50.001,50,142.229,50,255.999c0,113.771,92.229,206,205.998,206
+
+  c113.771,0,206.002-92.229,206.002-206C462,142.229,369.77,50.001,255.998,50.001z M261.051,122.781
+
+  c18.491,0,33.479,14.991,33.479,33.479c0,18.49-14.987,33.48-33.479,33.48c-18.489,0-33.479-14.99-33.479-33.48
+
+  C227.572,137.772,242.562,122.781,261.051,122.781z M320.577,375.537H208.452v-14.68l14.043-5.177
+
+  c7.86-2.898,13.082-10.388,13.082-18.766V257.75c0-8.378-5.222-15.868-13.082-18.766l-14.043-5.177v-15.002h84.973V336.91
+
+  c0,8.38,5.225,15.871,13.088,18.768l14.064,5.18V375.537z"/>
+
+</svg>
+ 
+
+
+          </span>
+        </div>
+      <div class="mapcontent" id="mapRestaurants"></div></div>
+      <div class="maps-explore">
+        <div class="map-title">
+          Languages
+        </div>
+        <div class="mapcontent" id="mapLanguage"></div></div>
+
+      </div>
+      </div>
+  </section>
+
+
+  <section id="microsoftCampus">
+    <div class="section-container">
+      <div class="sectiontitle">
+        <div class="titlebox">
+          Microsoft Campus
+        </div>
+      </div>
+        <div class="legend-container">
+          <div class="legend-item">
+            <div class="legend-symbol">
+              <div class="poi"></div> 
+            </div>
+            <div class="legend-title">
+              Microsoft Campus
+            </div>
+          </div>
+
+        <div class="legend-item" id="legend-bar">
+          <div class="legend-symbol">     
+            Fewer
+            <div class="legend-bar"></div>  
+            More
+            <div class="legend-bar-none"></div>
+            None
+            
+          </div>
+
+          <div class="legend-title">Language Speakers</div>
+        </div>   
+        <div class="legend-item">
+          <div class="legend-symbol" id="legend-circle">
+            <svg height="30" width="30">
+              
+              <circle cx="15" cy="22" r="7" fill="rgba(25,25,25,.2)" stroke="white" stroke-width="1"></circle>
+              <circle cx="15" cy="17" r="12" stroke="rgba(255,255,255,.6)" stroke-width="1" fill="rgba(25,25,25,.2)"></circle>
+  <circle cx="15" cy="25" r="3" fill="rgba(25,25,25,.1)" stroke="rgba(255,255,255,.6)" stroke-width="1"></circle>
+            </svg>
+            <div id="wrap-text">
+            # of Reviews
+            </div>
+          </div>
+          <div class="legend-title">
+            Restaurants
+          </div>
+        </div>     
+      </div>  
+      <div id="mapsBox">
+        <img class="map-img" src="img/eatspeak-02.png">
+
+      </div>
+      </div>
+  </section>
+  <section id="internationalDistrict">
+    <div class="section-container">
+    <!-- <div class="leftpanel"> -->
+      <div class="sectiontitle">
+        <div class="titlebox">
+        International District
+        </div>
+      </div>
+              <div class="legend-container">
+          <div class="legend-item">
+            <div class="legend-symbol">
+              <div class="poi"></div> 
+            </div>
+            <div class="legend-title">
+              International District
+            </div>
+          </div>
+
+        <div class="legend-item" id="legend-bar">
+          <div class="legend-symbol">     
+            Fewer
+            <div class="legend-bar"></div>  
+            More
+            <div class="legend-bar-none"></div>
+            None
+            
+          </div>
+
+          <div class="legend-title">Language Speakers</div>
+        </div>   
+        <div class="legend-item">
+          <div class="legend-symbol" id="legend-circle">
+            <svg height="30" width="30">
+              
+              <circle cx="15" cy="22" r="7" fill="rgba(25,25,25,.2)" stroke="white" stroke-width="1"></circle>
+              <circle cx="15" cy="17" r="12" stroke="rgba(255,255,255,.6)" stroke-width="1" fill="rgba(25,25,25,.2)"></circle>
+  <circle cx="15" cy="25" r="3" fill="rgba(25,25,25,.1)" stroke="rgba(255,255,255,.6)" stroke-width="1"></circle>
+            </svg>
+            <div id="wrap-text">
+            # of Reviews
+            </div>
+          </div>
+          <div class="legend-title">
+            Restaurants
+          </div>
+        </div>     
+      </div> 
+   
+      <div id="mapsBox">
+        <img class="map-img" src="img/eatspeak-04.png">
+
+      </div>
+      </div>
+  </section>
+  <section id="rainierValley">
+    <div class="section-container">
+    <!-- <div class="leftpanel"> -->
+      <div class="sectiontitle">
+        <div class="titlebox">
+          Rainier Avenue
+          </div>
+        </div>
+              <div class="legend-container">
+          <div class="legend-item">
+            <div class="legend-symbol">
+              <div class="poi"></div> 
+            </div>
+            <div class="legend-title">
+              Rainier Avenue
+            </div>
+          </div>
+
+        <div class="legend-item" id="legend-bar">
+          <div class="legend-symbol">     
+            Fewer
+            <div class="legend-bar"></div>  
+            More
+            <div class="legend-bar-none"></div>
+            None
+            
+          </div>
+
+          <div class="legend-title">Language Speakers</div>
+        </div>   
+        <div class="legend-item">
+          <div class="legend-symbol" id="legend-circle">
+            <svg height="30" width="30">
+              
+              <circle cx="15" cy="22" r="7" fill="rgba(25,25,25,.2)" stroke="white" stroke-width="1"></circle>
+              <circle cx="15" cy="17" r="12" stroke="rgba(255,255,255,.6)" stroke-width="1" fill="rgba(25,25,25,.2)"></circle>
+  <circle cx="15" cy="25" r="3" fill="rgba(25,25,25,.1)" stroke="rgba(255,255,255,.6)" stroke-width="1"></circle>
+            </svg>
+            <div id="wrap-text">
+            # of Reviews
+            </div>
+          </div>
+          <div class="legend-title">
+            Restaurants
+          </div>
+        </div>     
+      </div> 
+      <div id="mapsBox">
+        <img class="map-img" src="img/eatspeak-03.png">
+
+
+      </div>
+      </div>
+  </section>
+  <section id="university">
+    <div class="section-container">
+    <!-- <div class="leftpanel"> -->
+      <div class="sectiontitle">
+        <div class="titlebox">
+          University of Washington
+        </div>
+      </div>
+             <div class="legend-container">
+          <div class="legend-item">
+            <div class="legend-symbol">
+              <div class="poi"></div> 
+            </div>
+            <div class="legend-title">
+              University of Washington
+            </div>
+          </div>
+
+        <div class="legend-item" id="legend-bar">
+          <div class="legend-symbol">     
+            Fewer
+            <div class="legend-bar"></div>  
+            More
+            <div class="legend-bar-none"></div>
+            None
+            
+          </div>
+
+          <div class="legend-title">Language Speakers</div>
+        </div>   
+        <div class="legend-item">
+          <div class="legend-symbol" id="legend-circle">
+            <svg height="30" width="30">
+              
+              <circle cx="15" cy="22" r="7" fill="rgba(25,25,25,.2)" stroke="white" stroke-width="1"></circle>
+              <circle cx="15" cy="17" r="12" stroke="rgba(255,255,255,.6)" stroke-width="1" fill="rgba(25,25,25,.2)"></circle>
+  <circle cx="15" cy="25" r="3" fill="rgba(25,25,25,.1)" stroke="rgba(255,255,255,.6)" stroke-width="1"></circle>
+            </svg>
+            <div id="wrap-text">
+            # of Reviews
+            </div>
+          </div>
+          <div class="legend-title">
+            Restaurants
+          </div>
+        </div>     
+      </div> 
+   
+    <div id="mapsBox">
+        <img class="map-img" src="img/eatspeak-01.png">
+      
+      </div>
+      </div>
+  </section>
+
+
+  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>    
+  <script src="../js/Leaflet.Sync/L.Map.Sync.js"> </script>
+  <script type="text/javascript" src="../d3/d3.min.js"></script>
+  <!-- <script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"> </script> -->
+  <script src="../js/leaflet-heat.js"> </script>
+  <script src="../scripts/Leaflet.Coordinates-master/dist/Leaflet.Coordinates-0.1.4.min.js"> </script>
+  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+  <link rel="stylesheet" type="text/css" href="../../foundation/css/app.css"> 
+  <link rel="stylesheet" type"text/css" href="../scripts/Leaflet.Coordinates-master/dist/Leaflet.Coordinates-0.1.4.css">
+    <!-- <script src="geotoarray.js"></script> -->
+    <!-- <script src="geotoarrayMex.js"></script> -->    
+    <script src="arrays/africanarray.js"></script>
+    <script src="arrays/chinesearray.js"></script>
+    <script src="arrays/indianarray.js"></script>
+    <script src="arrays/japanesearray.js"></script>
+    <script src="arrays/koreanarray.js"></script>
+    <script src="arrays/russianarray.js"></script>
+    <script src="arrays/Mexicanarray.js"></script>
+    <script src="arrays/vietnamesearray.js"></script>
     <script>
-      $(document).foundation();
-    </script>
-    <script>
-      $(function() {
+  
+  
+
+ $(function() {
+        
+  var panelVal;
+   
+  // var layer = new L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+  //  attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+  //  subdomains: '0123',
+  //  minZoom: 2,
+  //  maxZoom: 18
+  //  }); 
+    
+  // var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+  // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  // subdomains: '0123',
+    // minZoom: 2,
+    // maxZoom: 18
+    // });    
+  
+
+  var mapRestaurants = new L.Map("mapRestaurants", {
+      center: new L.LatLng(47.6063889,-122.3308333),
+      zoom: 11,
+      zoomControl: false,
+      opacity: .5, attributionControl: false
+    });
+
+  var layer1 = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  subdomains: 'abcd',
+  maxZoom: 19
+});
+
+  mapRestaurants.addLayer(layer1);
+
+  var mapLanguage = new L.Map("mapLanguage", {
+      center: new L.LatLng(47.6063889,-122.3308333),
+      zoom: 11,
+      zoomControl: false,
+      opacity: .5, attributionControl: false
+    });
+
+  var layer2 = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  subdomains: 'abcd',
+  maxZoom: 19
+});
+
+mapLanguage.addLayer(layer2);
+
+
+
+//INDIAN
+
+  
+
+
+
+  var heatChi= new L.heatLayer(heatChinese,{
+          radius: 12,
+          blur: 17, 
+          maxZoom: 21,
+          maxOpacity: 1,
+          minOpacity: .1,
+          max: .2,
+          gradient: {.2: "rgba(255,255,255,.01)", .38: "rgba(255,255,255,.05)", .4: "#B8B894", 1: "#999966"}
+      });
+
+  mapLanguage.addLayer(heatChi);
+
+//VIETNAMESE
+
+    var heatInd = new L.heatLayer(heatIndian,{
+            radius: 12,
+            blur: 17, 
+            maxZoom: 21,
+            maxOpacity: 1,
+            minOpacity: .1,
+            max: .2,
+              gradient: {.2: "rgba(255,255,255,.01)", .38: "rgba(255,255,255,.05)", .4: "#FF99FF", .6: "#FF33FF"}
+            // "#F2784B"
+        });
+
+  mapLanguage.addLayer(heatInd);
+
+
+    var heatViet = new L.heatLayer(heatVietnamese,{
+          radius: 12,
+          blur: 17, 
+          maxZoom: 21,
+          maxOpacity: 1,
+          minOpacity: 0,
+          max: .2,
+        gradient: {.2: "rgba(255,255,255,.01)", .38: "rgba(255,255,255,.05)", .4: "#FFFF80", 1: "#FFFF00"}
+        });
+  
+  mapLanguage.addLayer(heatViet);
+
+//KOREAN
+
+  var heatKor= new L.heatLayer(heatKorean,{
+        radius: 12,
+        blur: 17, 
+        maxZoom: 21,
+        maxOpacity: 1,
+        minOpacity: .1,
+        max: .2,
+        gradient: {.2: "rgba(255,255,255,.01)", .38: "rgba(255,255,255,.05)", .4: "#FFAD99", .7: "#FF5C33", 1: "#FF3300"}
+          // "#F2784B"
+      });
+  
+  mapLanguage.addLayer(heatKor);  
+
+
+
+//MEXICAN
+
+ 
+
+    var heatMex = new L.heatLayer(heatMexican,{
+            radius: 11,
+            blur: 17, 
+            maxZoom: 21,
+            maxOpacity: 1,
+            minOpacity: .1,
+            max: .2,
+              gradient: {.2: "rgba(255,255,255,.01)", .38: "rgba(255,255,255,.05)", .4: "#80E6B2", 1: "#00CC66"}
+          // "#F2784B"
+        });
+
+    mapLanguage.addLayer(heatMex);
+
+//AFRICAN
+
+
+    var heatAfr = new L.heatLayer(heatAfrican,{
+            radius: 10,
+            blur: 20, 
+            maxZoom: 21,
+            maxOpacity: .5,
+            minOpacity: .01,
+            max: .2,
+              gradient: {.2: "rgba(255,255,255,.01)", .38: "rgba(255,255,255,.05)", .6: "#80CCFF", .8: "#0099FF"}
+            // "#F2784B"
+        });
+
+    mapLanguage.addLayer(heatAfr);
+
+
+
+
+
+// var heatLayers = new L.LayerGroup().addTo(mapRestaurants);  
+//  L.control.coordinates({
+//     position:"bottomleft", //optional default "bootomright"
+//     decimals:2, //optional default 4
+//     decimalSeperator:".", //optional default "."
+//     labelTemplateLat:"Latitude: {y}", //optional default "Lat: {y}"
+//      labelTemplateLng:"Longitude: {x}", //optional default "Lng: {x}"
+//     enableUserInput:true, //optional default true
+//     useDMS:false, //optional default false
+//     useLatLngOrder: true //ordering of labels, default false-> lng-lat
+// }).addTo(mapRestaurants);
+
+
+
+
+
+
+  
+mapRestaurants.sync(mapLanguage);
+mapLanguage.sync(mapRestaurants);
+
+mapLanguage.touchZoom.disable();
+mapLanguage.doubleClickZoom.disable();
+mapLanguage.scrollWheelZoom.disable();
+mapRestaurants.touchZoom.disable();
+mapRestaurants.doubleClickZoom.disable();
+mapRestaurants.scrollWheelZoom.disable();
+
+  
+
+// var referencemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+//  attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+//  maxZoom: 16
+// });
+  
+// var refmap = new L.Map("refmap", {
+//     center: new L.LatLng(47.6063889,-122.3308333),
+//     zoom: 9, zoomControl: false,
+//     opacity: .5, attributionControl: false
+//  }); 
+
+//  refmap.addLayer(referencemap);
+
+
+// var refRect = new L.rectangle(mainBounds, {color: "#ff7800", weight: 1}).addTo(mapRestaurantsrefmap);
+
+
+  function heatMap(type) {
+    
+    if (type === undefined) {
+    type = "Vietnamese";
+    }
+    else {
+      type == type;
+    } 
+          
+    if (type == "Vietnamese") {   
+      heatLayers.clearLayers();
+      heatViet.addTo(mapRestaurantsheatLayers);
+      } 
+      else if (type == "Mexican") {
+      heatLayers.clearLayers();
+      heatMex.addTo(mapRestaurantsheatLayers);
+      }
+      else if (type == "African") {
+      heatLayers.clearLayers();
+      heatAfr.addTo(mapRestaurantsheatLayers);
+      }
+      else if (type == "Russian") {
+      heatLayers.clearLayers();
+      heatRus.addTo(mapRestaurantsheatLayers);
+      }
+      else if (type == "Indian")  {
+      heatLayers.clearLayers();
+      heatInd.addTo(mapRestaurantsheatLayers);
+      }
+      else if (type == "Korean")  {
+      heatLayers.clearLayers();
+      heatKor.addTo(mapRestaurantsheatLayers);
+      }
+      else if (type == "Chinese") {
+      heatLayers.clearLayers();
+      heatChi.addTo(mapRestaurantsheatLayers);
+      }
+      else if (type == "Japanese")  {
+      heatLayers.clearLayers();
+      heatJap.addTo(mapRestaurantsheatLayers);
+      }
+      
+      else {}
+    }   
+
+
+
+  
+//  var universityBounds = [[47.63,-122.36],[47.69,-122.23]];
+//  var techBounds = [[47.57-122.35],[47.72,-122.04]];
+
+//  $('#university').click(function() {
+//    map.fitBounds(universityBounds, 9);
+//    heatLayers.clearLayers();
+//    heatRus.addTo(mapRestaurantsheatLayers);    
+    
+//    heatKor.addTo(mapRestaurantsheatLayers);
+// heatChi.addTo(mapRestaurantsheatLayers);
+//    })
+
+//  $('#tech').click(function() {
+//    map.fitBound(techBounds, 4);
+//    heatInd.addTo(mapRestaurantsheatLayers);
+//    })
+//Let the D3 begin!    
+
+//Start the svg     
+  mapRestaurants._initPathRoot()    
+  // mapVietnamese._initPathRoot()    
+  // mapKorean._initPathRoot()  
+  // mapAfrican._initPathRoot()    
+  // mapIndian._initPathRoot()    
+  // mapMexican._initPathRoot()      
+
+
+
+
+
+var svgChinese = d3.select("#mapRestaurants").select("svg");
+var gYelpChinese = svgChinese.append("g").attr("class", "gYelpChinese");
+
+var gradientChinese = svgChinese.append("svg:defs")
+.append("svg:radialGradient")
+.attr("id", "gradientChinese")
+.attr("x1", "0%")
+.attr("y1", "0%")
+.attr("x2", "100%")
+.attr("y2", "100%")
+.attr("spreadMethod", "pad");
+
+gradientChinese.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#999966")
+    .attr("stop-opacity", .5);
+
+gradientChinese.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "white")
+    .attr("stop-opacity", .1);
+
+
+var gradientVietnamese = svgChinese.append("svg:defs")
+.append("svg:radialGradient")
+.attr("id", "gradientVietnamese")
+.attr("x1", "0%")
+.attr("y1", "0%")
+.attr("x2", "100%")
+.attr("y2", "100%")
+.attr("spreadMethod", "pad");
+
+gradientVietnamese.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "yellow")
+    .attr("stop-opacity", 1);
+
+gradientVietnamese.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "white")
+    .attr("stop-opacity", .1);
+
+var gradientKorean = svgChinese.append("svg:defs")
+.append("svg:radialGradient")
+.attr("id", "gradientKorean")
+.attr("x1", "0%")
+.attr("y1", "0%")
+.attr("x2", "100%")
+.attr("y2", "100%")
+.attr("spreadMethod", "pad");
+
+gradientKorean.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#FF3300")
+    .attr("stop-opacity", 1);
+
+gradientKorean.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "white")
+    .attr("stop-opacity", .1);
+
+var gradientAfrican = svgChinese.append("svg:defs")
+.append("svg:radialGradient")
+.attr("id", "gradientAfrican")
+.attr("x1", "0%")
+.attr("y1", "0%")
+.attr("x2", "100%")
+.attr("y2", "100%")
+.attr("spreadMethod", "pad");
+
+gradientAfrican.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#0099FF")
+    .attr("stop-opacity", 1);
+
+gradientAfrican.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "white")
+    .attr("stop-opacity", .1);
+
+var gradientMexican = svgChinese.append("svg:defs")
+.append("svg:radialGradient")
+.attr("id", "gradientMexican")
+.attr("x1", "0%")
+.attr("y1", "0%")
+.attr("x2", "100%")
+.attr("y2", "100%")
+.attr("spreadMethod", "pad");
+
+gradientMexican.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#00cc66")
+    .attr("stop-opacity", 1);
+
+gradientMexican.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "white")
+    .attr("stop-opacity", .1);
+
+var gradientIndian = svgChinese.append("svg:defs")
+.append("svg:radialGradient")
+.attr("id", "gradientIndian")
+.attr("x1", "0%")
+.attr("y1", "0%")
+.attr("x2", "100%")
+.attr("y2", "100%")
+.attr("spreadMethod", "pad");
+
+gradientIndian.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#FF33FF")
+    .attr("stop-opacity", 1);
+
+gradientIndian.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "white")
+    .attr("stop-opacity", .1);
+
+d3.csv("seattlerestaurants.csv", function(datacsv) {
+  datacsv.forEach(function(d) {
+    d.LatLng = new L.LatLng(d.Lat,d.Lon)})  
+    // gYelp.selectAll("circle").remove();
+
+    var circleYelpChinese = gYelpChinese.selectAll("circle")
+      .data(datacsv)
+      .enter()
+      .append("circle");
+
+    var max = d3.max(datacsv, function(d) { return +d.Reviews;});
+    var min = d3.min(datacsv, function(d) { return +d.Reviews;});      
+    var oScale = d3.scale.linear()
+      .domain([min, max])
+      .range([75,25]);
+         
+  function update() {
+    circleYelpChinese.attr("cx",function(d) { return mapRestaurants.latLngToLayerPoint(d.LatLng).x})
+    circleYelpChinese.attr("cy",function(d) { return mapRestaurants.latLngToLayerPoint(d.LatLng).y})
+    circleYelpChinese.attr("r", function(d) { 
+      if (d.Reviews > 10) { return Math.sqrt(parseInt(d.Reviews) * 0.5); }
+        else if (d.Reviews > 50) { return Math.sqrt(parseInt(d.Reviews) * .2);}
+        else { return 10; }
+        })
+    circleYelpChinese.attr("callit", function(d) {return d.Name})
+    circleYelpChinese.style("fill", function(d) {
+      if (d.Category == "Chinese") { return "url(#gradientChinese)";}
+      else if (d.Category == "Vietnamese") { return "url(#gradientVietnamese)";}  
+      else if (d.Category == "Korean") { return "url(#gradientKorean)";}        
+      else if (d.Category == "African") { return "url(#gradientAfrican)";}        
+      else if (d.Category == "Mexican") { return "url(#gradientMexican)";}        
+      else if (d.Category == "Indian") { return "url(#gradientIndian)";}        
+
+      else {return "rgba(0,0,0,0)";}
+    })
+    circleYelpChinese.style("stroke", "rgba(255,255,255,.1)")
+    circleYelpChinese.style("opacity", function(d) { return Math.sqrt(oScale(d.Reviews) * .15)});
+  }
+
+  mapRestaurants.on("viewreset", update);
+  update();   
+})  
+
+// var svgVietnamese = d3.select("#mapRestaurants").select("svg");
+// var gYelpVietnamese = svgVietnamese.append("g").attr("class", "gYelpVietnamese");
+
+// var gradientVietnamese = svgVietnamese.append("svg:defs")
+// .append("svg:radialGradient")
+// .attr("id", "gradient")
+// .attr("x1", "0%")
+// .attr("y1", "0%")
+// .attr("x2", "100%")
+// .attr("y2", "100%")
+// .attr("spreadMethod", "pad");
+
+// gradientVietnamese.append("svg:stop")
+//     .attr("offset", "0%")
+//     .attr("stop-color", "red")
+//     .attr("stop-opacity", 1);
+
+// gradientVietnamese.append("svg:stop")
+//     .attr("offset", "100%")
+//     .attr("stop-color", "white")
+//     .attr("stop-opacity", .1);
+
+// d3.csv("seattlerestaurants.csv", function(datacsv) {
+//   datacsv.forEach(function(d) {
+//     d.LatLng = new L.LatLng(d.Lat,d.Lon)})  
+//     // gYelp.selectAll("circle").remove();
+
+//     var circleYelpVietnamese = gYelpVietnamese.selectAll("circle")
+//       .data(datacsv.filter(function(d) { 
+//               return d.Category === "Vietnamese";
+//               })) 
+//       .enter()
+//       .append("circle");
+
+//     var max = d3.max(datacsv, function(d) { return +d.Reviews;});
+//     var min = d3.min(datacsv, function(d) { return +d.Reviews;});      
+//     var oScale = d3.scale.linear()
+//       .domain([min, max])
+//       .range([75,25]);
+         
+//   function update() {
+//     circleYelpVietnamese.attr("cx",function(d) { return mapRestaurants.latLngToLayerPoint(d.LatLng).x})
+//     circleYelpVietnamese.attr("cy",function(d) { return mapRestaurants.latLngToLayerPoint(d.LatLng).y})
+//     circleYelpVietnamese.attr("r", function(d) { 
+//       if (d.Reviews > 10) { return Math.sqrt(parseInt(d.Reviews) * 0.5); }
+//         else if (d.Reviews > 50) { return Math.sqrt(parseInt(d.Reviews) * .2);}
+//         else { return 10; }
+//         })
+//     circleYelpVietnamese.attr("callit", function(d) {return d.Name})
+//     circleYelpVietnamese.style("fill", "url(#gradient)")
+//     circleYelpVietnamese.style("stroke", "rgba(255,255,255,.1)")
+//     circleYelpVietnamese.style("opacity", function(d) { return Math.sqrt(oScale(d.Reviews) * .15)});
+//   }
+//   mapRestaurants.on("viewreset", update);
+//   update();   
+// })  
+
+
+
+// var svgKorean = d3.select("#mapRestaurants").select("svg");
+// var gYelpKorean = svgKorean.append("g").attr("class", "gYelpKorean");
+
+// var gradientKorean = svgKorean.append("svg:defs")
+// .append("svg:radialGradient")
+// .attr("id", "gradient")
+// .attr("x1", "0%")
+// .attr("y1", "0%")
+// .attr("x2", "100%")
+// .attr("y2", "100%")
+// .attr("spreadMethod", "pad");
+
+// gradientKorean.append("svg:stop")
+//     .attr("offset", "0%")
+//     .attr("stop-color", "#4d4843")
+//     .attr("stop-opacity", 1);
+
+// gradientKorean.append("svg:stop")
+//     .attr("offset", "100%")
+//     .attr("stop-color", "white")
+//     .attr("stop-opacity", .1);
+
+// d3.csv("seattlerestaurants.csv", function(datacsv) {
+//   datacsv.forEach(function(d) {
+//     d.LatLng = new L.LatLng(d.Lat,d.Lon)})  
+//     // gYelp.selectAll("circle").remove();
+
+//     var circleYelpKorean = gYelpKorean.selectAll("circle")
+//       .data(datacsv.filter(function(d) { 
+//               return d.Category === "Korean";
+//               })) 
+//       .enter()
+//       .append("circle");
+
+//     var max = d3.max(datacsv, function(d) { return +d.Reviews;});
+//     var min = d3.min(datacsv, function(d) { return +d.Reviews;});      
+//     var oScale = d3.scale.linear()
+//       .domain([min, max])
+//       .range([75,25]);
+         
+//   function update() {
+//     circleYelpKorean.attr("cx",function(d) { return mapKorean.latLngToLayerPoint(d.LatLng).x})
+//     circleYelpKorean.attr("cy",function(d) { return mapKorean.latLngToLayerPoint(d.LatLng).y})
+//     circleYelpKorean.attr("r", function(d) { 
+//       if (d.Reviews > 10) { return Math.sqrt(parseInt(d.Reviews) * 0.5); }
+//         else if (d.Reviews > 50) { return Math.sqrt(parseInt(d.Reviews) * .2);}
+//         else { return 10; }
+//         })
+//     circleYelpKorean.attr("callit", function(d) {return d.Name})
+//     circleYelpKorean.style("fill", "url(#gradient)")
+//     circleYelpKorean.style("stroke", "rgba(255,255,255,.1)")
+//     circleYelpKorean.style("opacity", function(d) { return Math.sqrt(oScale(d.Reviews) * .15)});
+//   }
+//   mapRestaurants.on("viewreset", update);
+//   update();   
+// })  
+
+
+// var svgAfrican = d3.select("#mapRestaurants").select("svg");
+// var gYelpAfrican = svgAfrican.append("g").attr("class", "gYelpAfrican");
+
+// var gradientAfrican = svgAfrican.append("svg:defs")
+// .append("svg:radialGradient")
+// .attr("id", "gradient")
+// .attr("x1", "0%")
+// .attr("y1", "0%")
+// .attr("x2", "100%")
+// .attr("y2", "100%")
+// .attr("spreadMethod", "pad");
+
+// gradientAfrican.append("svg:stop")
+//     .attr("offset", "0%")
+//     .attr("stop-color", "#4d4843")
+//     .attr("stop-opacity", 1);
+
+// gradientAfrican.append("svg:stop")
+//     .attr("offset", "100%")
+//     .attr("stop-color", "white")
+//     .attr("stop-opacity", .1);
+
+// d3.csv("seattlerestaurants.csv", function(datacsv) {
+//   datacsv.forEach(function(d) {
+//     d.LatLng = new L.LatLng(d.Lat,d.Lon)})  
+//     // gYelp.selectAll("circle").remove();
+
+//     var circleYelpAfrican = gYelpAfrican.selectAll("circle")
+//       .data(datacsv.filter(function(d) { 
+//               return d.Category === "African";
+//               })) 
+//       .enter()
+//       .append("circle");
+
+//     var max = d3.max(datacsv, function(d) { return +d.Reviews;});
+//     var min = d3.min(datacsv, function(d) { return +d.Reviews;});      
+//     var oScale = d3.scale.linear()
+//       .domain([min, max])
+//       .range([75,25]);
+         
+//   function update() {
+//     circleYelpAfrican.attr("cx",function(d) { return mapAfrican.latLngToLayerPoint(d.LatLng).x})
+//     circleYelpAfrican.attr("cy",function(d) { return mapAfrican.latLngToLayerPoint(d.LatLng).y})
+//     circleYelpAfrican.attr("r", function(d) { 
+//       if (d.Reviews > 10) { return Math.sqrt(parseInt(d.Reviews) * 0.5); }
+//         else if (d.Reviews > 50) { return Math.sqrt(parseInt(d.Reviews) * .2);}
+//         else { return 10; }
+//         })
+//     circleYelpAfrican.attr("callit", function(d) {return d.Name})
+//     circleYelpAfrican.style("fill", "url(#gradient)")
+//     circleYelpAfrican.style("stroke", "rgba(255,255,255,.1)")
+//     circleYelpAfrican.style("opacity", function(d) { return Math.sqrt(oScale(d.Reviews) * .15)});
+//   }
+//   mapRestaurants.on("viewreset", update);
+//   update();   
+// })  
+
+// var svgIndian = d3.select("#mapRestaurants").select("svg");
+// var gYelpIndian = svgIndian.append("g").attr("class", "gYelpIndian");
+
+// var gradientIndian = svgIndian.append("svg:defs")
+// .append("svg:radialGradient")
+// .attr("id", "gradient")
+// .attr("x1", "0%")
+// .attr("y1", "0%")
+// .attr("x2", "100%")
+// .attr("y2", "100%")
+// .attr("spreadMethod", "pad");
+
+// gradientIndian.append("svg:stop")
+//     .attr("offset", "0%")
+//     .attr("stop-color", "#4d4843")
+//     .attr("stop-opacity", 1);
+
+// gradientIndian.append("svg:stop")
+//     .attr("offset", "100%")
+//     .attr("stop-color", "white")
+//     .attr("stop-opacity", .1);
+
+// d3.csv("seattlerestaurants.csv", function(datacsv) {
+//   datacsv.forEach(function(d) {
+//     d.LatLng = new L.LatLng(d.Lat,d.Lon)})  
+//     // gYelp.selectAll("circle").remove();
+
+//     var circleYelpIndian = gYelpIndian.selectAll("circle")
+//       .data(datacsv.filter(function(d) { 
+//               return d.Category === "Indian";
+//               })) 
+//       .enter()
+//       .append("circle");
+
+//     var max = d3.max(datacsv, function(d) { return +d.Reviews;});
+//     var min = d3.min(datacsv, function(d) { return +d.Reviews;});      
+//     var oScale = d3.scale.linear()
+//       .domain([min, max])
+//       .range([75,25]);
+         
+//   function update() {
+//     circleYelpIndian.attr("cx",function(d) { return mapIndian.latLngToLayerPoint(d.LatLng).x})
+//     circleYelpIndian.attr("cy",function(d) { return mapIndian.latLngToLayerPoint(d.LatLng).y})
+//     circleYelpIndian.attr("r", function(d) { 
+//       if (d.Reviews > 10) { return Math.sqrt(parseInt(d.Reviews) * 0.5); }
+//         else if (d.Reviews > 50) { return Math.sqrt(parseInt(d.Reviews) * .2);}
+//         else { return 10; }
+//         })
+//     circleYelpIndian.attr("callit", function(d) {return d.Name})
+//     circleYelpIndian.style("fill", "url(#gradient)")
+//     circleYelpIndian.style("stroke", "rgba(255,255,255,.1)")
+//     circleYelpIndian.style("opacity", function(d) { return Math.sqrt(oScale(d.Reviews) * .15)});
+//   }
+//   mapRestaurants.on("viewreset", update);
+//   update();   
+// })  
+
+// var svgMexican = d3.select("#mapRestaurants").select("svg");
+// var gYelpMexican = svgMexican.append("g").attr("class", "gYelpMexican");
+
+// var gradientMexican = svgMexican.append("svg:defs")
+// .append("svg:radialGradient")
+// .attr("id", "gradient")
+// .attr("x1", "0%")
+// .attr("y1", "0%")
+// .attr("x2", "100%")
+// .attr("y2", "100%")
+// .attr("spreadMethod", "pad");
+
+// gradientMexican.append("svg:stop")
+//     .attr("offset", "0%")
+//     .attr("stop-color", "#4d4843")
+//     .attr("stop-opacity", 1);
+
+// gradientMexican.append("svg:stop")
+//     .attr("offset", "100%")
+//     .attr("stop-color", "white")
+//     .attr("stop-opacity", .1);
+
+// d3.csv("seattlerestaurants.csv", function(datacsv) {
+//   datacsv.forEach(function(d) {
+//     d.LatLng = new L.LatLng(d.Lat,d.Lon)})  
+//     // gYelp.selectAll("circle").remove();
+
+//     var circleYelpMexican = gYelpMexican.selectAll("circle")
+//       .data(datacsv.filter(function(d) { 
+//               return d.Category === "Mexican";
+//               })) 
+//       .enter()
+//       .append("circle");
+
+//     var max = d3.max(datacsv, function(d) { return +d.Reviews;});
+//     var min = d3.min(datacsv, function(d) { return +d.Reviews;});      
+//     var oScale = d3.scale.linear()
+//       .domain([min, max])
+//       .range([75,25]);
+         
+//   function update() {
+//     circleYelpMexican.attr("cx",function(d) { return mapMexican.latLngToLayerPoint(d.LatLng).x})
+//     circleYelpMexican.attr("cy",function(d) { return mapMexican.latLngToLayerPoint(d.LatLng).y})
+//     circleYelpMexican.attr("r", function(d) { 
+//       if (d.Reviews > 10) { return Math.sqrt(parseInt(d.Reviews) * 0.5); }
+//         else if (d.Reviews > 50) { return Math.sqrt(parseInt(d.Reviews) * .2);}
+//         else { return 10; }
+//         })
+//     circleYelpMexican.attr("callit", function(d) {return d.Name})
+//     circleYelpMexican.style("fill", "url(#gradient)")
+//     circleYelpMexican.style("stroke", "rgba(255,255,255,.1)")
+//     circleYelpMexican.style("opacity", function(d) { return Math.sqrt(oScale(d.Reviews) * .15)});
+//   }
+//   mapRestaurants.on("viewreset", update);
+//   update();   
+// })  
+
+});
+ 
+</script>
+<script src="js/vendor/jquery.js"></script>
+<script src="js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+</script> 
+    <script type="text/javascript" src="../js/skrollr.min.js"></script>
+    <script type="text/javascript">
         $(".story").click(function() {
-          var currentPage;
-          currentPage = this.id; 
-          $("section").hide();
-          $(".shell#" + currentPage).show();
-          console.log(currentPage);
-        })  
-      })
+          var activeId = this.id;
+          var section = $("section#" + activeId);
+          var idOffset = $(section).offset();
+          var idOffsetTop = idOffset.top - 35;
+          console.log(idOffset.top);
+          $('html, body').animate({
+            scrollTop: idOffsetTop}, 800, "easeInOutSine" );
+          return false;
+        });
+        
+
     </script>
-  </body>
+</body>
+</body>
 </html>

@@ -86,15 +86,17 @@
     <div id="anno"></div>
     
     
-    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+        <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>    
+    <script src="../js/Leaflet.Sync/L.Map.Sync.js"> </script>
     <script type="text/javascript" src="../d3/d3.min.js"></script>
     <script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"> </script>
     <script src="../scripts/Leaflet.Coordinates-master/dist/Leaflet.Coordinates-0.1.4.min.js"> </script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
-	<link rel="stylesheet" type="text/css" href="../map.css"> 
+	<link rel="stylesheet" type="text/css" href="../../foundation/css/app.css"> 
 	<link rel="stylesheet" type"text/css" href="../scripts/Leaflet.Coordinates-master/dist/Leaflet.Coordinates-0.1.4.css">
-    <!-- <script src="geotoarray.js"></script> -->
+
+   <!-- <script src="geotoarray.js"></script> -->
     <!-- <script src="geotoarrayMex.js"></script> -->    
     <script src="arrays/africanarray.js"></script>
     <script src="arrays/chinesearray.js"></script>
@@ -234,7 +236,6 @@
 		else {
 			type == type;
 		}	
-
 		    	
 		if (type == "Vietnamese") {  	
 		  heatLayers.clearLayers();
@@ -296,8 +297,6 @@
 			type == type;
 			console.log("d3Update fired for " + type);
 			}
-	
-	
 	
 		d3.csv("seattlerestaurants.csv", function(datacsv) {
 			datacsv.forEach(function(d) {
@@ -486,8 +485,6 @@
 
 
 });
-
-	
  
     </script>
 	
