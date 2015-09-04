@@ -7,6 +7,24 @@
 
 }
 
+#myModal {
+	width: 500px;
+}
+
+#myModal h1 {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1;
+}
+
+.import-1 {
+	color: #4CCA9F;
+}
+
+.import-2 {
+	color: #F9D07F;
+}
+
 .legend-bar {
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5fa4bf+0,f7f2ca+50,f4bd27+100 */
   width: 5rem;

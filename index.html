@@ -10,11 +10,14 @@
     <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
     <script src="js/vendor/modernizr.js"></script>
 <body>
-    <!-- <div class="filter_options">
-    <input class="filter_button" name="name" id="a_button" type="checkbox"  value="Vietnamese">a</input><br>
-    <input class="filter_button" name="name" id="b_button" type="checkbox"  value="Mexican">b</input><br>
-    <input class="filter_button" name="name" id="c_button" type="checkbox"  value="Ethiopian">c</input><br>
-    </div> -->    
+
+<div id="myModal" class="reveal-modal" data-reveal>
+  <h1 class="modal">What's the relationship between <span class="import-1">language communities</span> and corresponding <span class="import-2">restaurant cuisines?</span></h1>
+  <p>This project looks at restaurant locations and langauge communities taken from Yelp and the US Census to try to understand whether residents and businesses still follow the same clustering patterns of traditional ethnic enclaves.</p>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+
 <div class="fixed"> 
   <nav class="top-bar" data-topbar role="navigation">
     <div id="title">EatSpeak: Seattle</div>
@@ -412,10 +415,10 @@
     <script src="arrays/vietnamesearray.js"></script> -->
     <script>
   
-  
 
  $(function() {
-        
+      
+
   var panelVal;
    
   // var layer = new L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
@@ -1238,8 +1241,11 @@ d3.csv("seattlerestaurants.csv", function(datacsv) {
 </script>
 <script src="js/vendor/jquery.js"></script>
 <script src="js/foundation.min.js"></script>
+<script src="js/foundation/foundation.reveal.js"></script>
 <script>
   $(document).foundation();
+  $(document).ready(function(){$('#myModal').foundation('reveal', 'open')}); 
+
 </script> 
     <script type="text/javascript" src="js/skrollr.min.js"></script>
     <script type="text/javascript">
