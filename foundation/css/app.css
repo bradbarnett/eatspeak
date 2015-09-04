@@ -17,6 +17,17 @@
     line-height: 1;
 }
 
+#myModal p {
+    font-family: inherit;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 0rem;
+    text-rendering: optimizeLegibility;
+    padding-top: 1.2rem;
+}
+
 .import-1 {
 	color: #4CCA9F;
 }
