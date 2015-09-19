@@ -295,7 +295,8 @@ function addDataToMap(data, mapLanguage, mapRestaurants) {
     dataLayer1 = L.geoJson(data, {style: lineStyle});
     dataLayer.addTo(mapRestaurants);
     dataLayer1.addTo(mapLanguage);
-
+    dataLayer.bringToFront();
+    dataLayer1.bringToFront();
 }
 $.getJSON("poi.geojson", function(data) { addDataToMap(data, mapLanguage, mapRestaurants); });
 
