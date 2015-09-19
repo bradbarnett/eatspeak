@@ -1,0 +1,130 @@
+<html>
+
+
+
+
+<head>
+  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+  <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
+  <script src="http://leafletjs.com/dist/leaflet.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script src="seattle.js"></script>
+  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+  <style>
+  #map {
+    height: 800px;
+    width: 1200px;
+    display: block;
+  }
+  </style>
+</head>
+
+<body>
+map
+<div id="map">
+</div>
+
+<!-- <script>
+
+var mapLanguage = new L.Map("map", {
+      center: new L.LatLng(47.6063889,-122.3308333),
+      zoom: 11,
+      zoomControl: true,
+      opacity: 0.5, 
+      attributionControl: false
+    });
+
+  var layer2 = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  subdomains: 'abcd',
+  maxZoom: 19
+});
+
+mapLanguage.addLayer(layer2);
+
+L.TopoJSON = L.GeoJSON.extend({  
+  addData: function(jsonData) {    
+    if (jsonData.type === "Topology") {
+      for (var key in jsonData.objects) {
+        geojson = topojson.feature(jsonData, jsonData.objects[key]);
+        L.GeoJSON.prototype.addData.call(this, geojson);
+      }
+    }    
+    else {
+      L.GeoJSON.prototype.addData.call(this, jsonData);
+    }
+  }  
+});
+//Copyright (c) 2013 Ryan Clark
+
+var topoLayer = new L.TopoJSON();
+
+$.getJSON('geoprocessing/hexprocess/hex_filled4326_5p_c.json')
+  .done(addTopoData);
+
+function addTopoData(topoData){  
+  topoLayer.addData(topoData);
+  topoLayer.addTo(mapLanguage);
+  topoLayer.eachLayer(handleLayer);
+}
+
+function handleLayer(layer){
+  var language = layer.feature.properties.winner;
+  var households = layer.feature.properties.hh_int;
+console.log(households);
+
+    layer.setStyle({
+      fillColor : filterColor(language,households),
+      fillOpacity: 1,
+      color:'white',
+      weight:1,
+      opacity:0.8
+    });
+}
+
+function filterColor(language, households) {
+  if (language ==="african") {
+    return households > 15  ?  '#5BE1FF' :
+           households > 10  ? '#9EEDFF'  :
+           households > 5  ? '#cceff6'  :
+           false;
+  }
+  if (language ==="chinese") {
+    return households > 15  ? '#BAA175' :
+           households > 10  ? '#CEBB99' :
+           households > 0  ? '#E5D5B6' :
+           false;
+  }
+  if (language ==="indian") {
+    return households > 15  ? '#d254f9' :
+           households > 10  ? '#D99BF4':
+           households > 0  ? '#E6C6F4' :
+           false;
+  }
+  if (language ==="korean") {
+    return households > 15  ? '#DB3535' :
+           households > 10  ? '#F36B6B' :
+           households > 0  ? '#E6ABAB' :
+           false;
+  }
+  if (language ==="mexican") {
+    return households > 15  ? '#a1d99b' :
+           households > 10  ? '#31a354' :
+           households > 0  ? '#A2E39D' :
+           false;
+  }        
+  if (language ==="vietnamese") {
+    return households > 15  ? '#fcff00' :
+           households > 10  ? '#fdff4e' :
+           households >  0  ? '#feff88' :
+           false;
+  }     
+  else return "transparent";
+}
+ 
+</script> -->
+
+</body>
+
+</html>

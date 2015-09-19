@@ -1,10 +1,26 @@
 /*FOUNDATION CUSTOMIZATIONS*/
 
+.map-label {
+	color: rgba(65, 87, 95, .7);
+	opacity: 1;
+	width: 100px;
+	font-size: 130%;
+	font-weight: 600;
+	line-height: 1;
+
+}
+
 .has-tip {
 	font-size: 45%;
 	font-style:italic;
 	font-weight: 400;
 
+}
+
+.leaflet-label-overlay {
+        line-height:0px;
+        margin-top: 9px;
+        position: absolute;
 }
 
 #myModal {
@@ -91,6 +107,10 @@
 	margin-right: 1rem;
 }
 
+input[type="checkbox"].filter	 {
+	margin: 0;
+}
+
 .ethnicity {
 	width: 6rem;
 	margin-right: 1rem;
@@ -135,31 +155,32 @@ body {
 }
 
 #nav button {
-  border-radius: 0;
-  padding: 1px 3px;
-  background-color: transparent;
-  color: rgba(99, 141, 155, .6);
-  /* border-right: 1px solid; */
-  margin-right: 5px;
-  font-family: 'baskerville', serif;
-  font-size: 75%;
-  font-weight: 600;
-  transition: border-bottom .3s, color .3s;
+border-radius: 0;
+    padding: 1px 3px;
+    background-color: transparent;
+    color: rgba(65, 87, 95, .7);
+    /* border-right: 1px solid; */
+    margin-right: 10px;
+    font-family: 'baskerville', serif;
+    font-size: 85%;
+    font-weight: 600;
+    transition: border-bottom .3s, color .3s;
 
 }
 
 
 #nav button:hover {
-  border-radius: 0;
-  padding: 1px 3px;
-  background-color: rgba(255, 255, 255, 0);
-  color: rgb(65, 102, 115);
-  border-bottom: 2px solid;
-  margin-right: 5px;
-  font-family: 'baskerville', serif;
-  font-size: 75%;
-  font-weight: 600;ont-weight: 600;
-  transition: border-bottom .3s, color .3s;
+border-radius: 0;
+    padding: 1px 3px;
+    background-color: transparent;
+    color: rgba(65, 87, 95, .9);
+      border-bottom: 2px solid;
+    /* border-right: 1px solid; */
+    margin-right: 10px;
+    font-family: 'baskerville', serif;
+    font-size: 85%;
+    font-weight: 600;
+    transition: border-bottom .3s, color .3s;
 }
 
 section {
@@ -174,7 +195,7 @@ section {
 }
 
 .first-section {    
-	margin: 0px 0 50px 0px;
+	margin: 0px 0 0px 0px;
     text-align: center;
     height: 100%;
 }
@@ -276,7 +297,7 @@ span.special3 {
 	height: 1rem; 
 	display: inline-block; 
 	font-size: 120%;
-	background-color: rgb(38, 184, 106);
+	background-color: rgb(95, 220, 153);
 }
 
 .african {
@@ -284,7 +305,7 @@ span.special3 {
 	height: 1rem; 
 	display: inline-block; 
 	font-size: 120%;
-	background-color:  steelblue;
+	background-color:  #62A9E4;
 }
 
 .indian {
@@ -292,7 +313,7 @@ span.special3 {
 	height: 1rem; 
 	display: inline-block; 
 	font-size: 120%;
-	background-color: rgb(218, 54, 218);
+	background-color: rgb(230, 139, 230);
 
 }
 
