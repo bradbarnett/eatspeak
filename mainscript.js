@@ -25,7 +25,8 @@ var mapLanguage = new L.Map("mapLanguage", {
   center: new L.LatLng(47.6063889,-122.3308333),
   zoom: 12,
   zoomControl: false,
-  opacity: .5, attributionControl: false
+  opacity: .5, 
+  attributionControl: false
 });
 
 var layer2 = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
@@ -176,10 +177,10 @@ function filterColor(language, households) {
   
 
 
-mapLanguage.touchZoom.disable();
+// mapLanguage.touchZoom.disable();
 mapLanguage.doubleClickZoom.disable();
 mapLanguage.scrollWheelZoom.disable();
-mapRestaurants.touchZoom.disable();
+// mapRestaurants.touchZoom.disable();
 mapRestaurants.doubleClickZoom.disable();
 mapRestaurants.scrollWheelZoom.disable();
 
@@ -308,11 +309,11 @@ $.getJSON("poi.geojson", function(data) { addDataToMap(data, mapLanguage, mapRes
 
 
   
- var universityBounds = [[47.579,-122.42],[47.749,-122.166]];
- var techBounds = [[47.559,-122.259],[47.726,-122.000]];
- var chinatownBounds = [[47.517,-122.442],[47.687,-122.182]];
- var rainierBounds = [[47.45154,-122.405],[47.620,-122.145]];
- var startBounds = [[47.509,-122.464],[47.712,-122.198]];
+ var universityBounds = [[47.592,-122.408],[47.713,-122.194]];
+ var techBounds = [[47.587,-122.237],[47.707,-122.022]];
+ var chinatownBounds = [[47.54734,-122.41707],[47.664,-122.205]];
+ var rainierBounds = [[47.480,-122.384],[47.600,-122.170]];
+ var startBounds = [[47.554,-122.439],[47.674,-122.223]];
 
  $('#university').click(function() {
     mapLanguage.fitBounds(universityBounds, {reset:true});
@@ -356,7 +357,7 @@ $.getJSON("poi.geojson", function(data) { addDataToMap(data, mapLanguage, mapRes
  $('#microsoftCampus').click(function() {
    mapLanguage.fitBounds(techBounds, {reset:true});
    mapRestaurants.fitBounds(techBounds, {reset:true});
-   
+
      var focusValue = parseInt($(this).val());
     dataLayer.eachLayer(function(layer) {
       var id = layer.feature.properties.id;

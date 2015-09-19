@@ -79,14 +79,35 @@
 
 
 #first-legend {
-    position: absolute;
-    bottom: 5px;
+        position: absolute;
+    bottom: 20px;
     background: rgba(255,255,255,.8);
     width: 100%;
-	text-align:center;
-}
+    text-align: center;
+    padding-bottom: 5px;
 }
 
+#second-legend {
+    position: absolute;
+    bottom: 0px;
+    background: rgba(255,255,255,.8);
+    width: 100%;
+    text-align: right;
+    height: 20px;
+    font-size: 65%;
+    padding-right: 5px;
+
+}
+
+a.brad {
+	color: salmon;
+}
+
+.credits {
+	display:inline;
+
+}
+    
 .legend-container {
 	margin-left:3rem;
 	margin-bottom: 1rem;
@@ -407,7 +428,7 @@ form {
 }
 
 .mapcontent {
-  height: 95%;
+  height: 100%;
   width: 100%;
   float: left;
 }
