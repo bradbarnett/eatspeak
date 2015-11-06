@@ -9,7 +9,7 @@ var panelVal;
 var mapRestaurants = new L.Map("mapRestaurants", {
   center: new L.LatLng(47.6063889,-122.3308333),
   zoom: 12,
-  zoomControl: false,
+  zoomControl: true,
   opacity: .5, attributionControl: false
 });
 
@@ -321,7 +321,13 @@ $.getJSON("poi.geojson", function(data) { addDataToMap(data, mapLanguage, mapRes
     mapRestaurants.fitBounds(universityBounds, {reset:true});
 
     var focusValue = parseInt($(this).val());
-    dataLayer.eachLayer(function(layer) {
+    var focusName = $(this).attr('id');
+    console.log(focusName);
+        $(".info-pane").hide();
+    $(".current-nav").removeClass("current-nav");
+    $(this).addClass("current-nav");
+    $("#"+focusName+".info-pane").show();
+        dataLayer.eachLayer(function(layer) {
       var id = layer.feature.properties.id;
       if (id == focusValue) {
         layer.setStyle({color: "rgba(65, 87, 95,.7)", opacity: 1});
@@ -359,8 +365,16 @@ $.getJSON("poi.geojson", function(data) { addDataToMap(data, mapLanguage, mapRes
    mapLanguage.fitBounds(techBounds, {reset:true});
    mapRestaurants.fitBounds(techBounds, {reset:true});
 
-     var focusValue = parseInt($(this).val());
-    dataLayer.eachLayer(function(layer) {
+   var focusValue = parseInt($(this).val());
+   var focusName = $(this).attr('id');
+   console.log(focusName);
+    $(".info-pane").hide();
+    $(".current-nav").removeClass("current-nav");
+    $(this).addClass("current-nav");
+    $(".current-nav").removeClass("current-nav");
+    $(this).addClass("current-nav");
+    $("#"+focusName+".info-pane").show();
+             dataLayer.eachLayer(function(layer) {
       var id = layer.feature.properties.id;
       if (id == focusValue) {
         layer.setStyle({color: "rgba(65, 87, 95,.7)", opacity: 1});
@@ -399,6 +413,18 @@ $.getJSON("poi.geojson", function(data) { addDataToMap(data, mapLanguage, mapRes
     mapRestaurants.fitBounds(chinatownBounds, {reset:true});
 
     var focusValue = parseInt($(this).val());
+    var focusName = $(this).attr('id');
+    console.log(focusName);
+        $(".info-pane").hide();
+    $(".current-nav").removeClass("current-nav");
+    $(this).addClass("current-nav");
+    $("#"+focusName+".info-pane").show();
+    var focusName = $(this).attr('id');
+    console.log(focusName);
+        $(".info-pane").hide();
+    $(".current-nav").removeClass("current-nav");
+    $(this).addClass("current-nav");
+    $("#"+focusName+".info-pane").show();
     dataLayer.eachLayer(function(layer) {
       var id = layer.feature.properties.id;
       if (id == focusValue) {
@@ -438,7 +464,13 @@ $.getJSON("poi.geojson", function(data) { addDataToMap(data, mapLanguage, mapRes
     mapRestaurants.fitBounds(rainierBounds, {reset:true});
 
     var focusValue = parseInt($(this).val());
-    dataLayer.eachLayer(function(layer) {
+    var focusName = $(this).attr('id');
+    console.log(focusName);
+    $(".info-pane").hide();
+    $(".current-nav").removeClass("current-nav");
+    $(this).addClass("current-nav");
+    $("#"+focusName+".info-pane").show();
+            dataLayer.eachLayer(function(layer) {
       var id = layer.feature.properties.id;
       if (id == focusValue) {
         layer.setStyle({color: "rgba(65, 87, 95,.7)", opacity: 1});
@@ -477,7 +509,13 @@ $.getJSON("poi.geojson", function(data) { addDataToMap(data, mapLanguage, mapRes
     mapRestaurants.fitBounds(startBounds, {reset:true});
 
     var focusValue = parseInt($(this).val());
-    dataLayer.eachLayer(function(layer) {
+    var focusName = $(this).attr('id');
+    console.log(focusName);
+        $(".info-pane").hide();
+    $(".current-nav").removeClass("current-nav");
+    $(this).addClass("current-nav");
+    $("#"+focusName+".info-pane").show();
+            dataLayer.eachLayer(function(layer) {
       var id = layer.feature.properties.id;
       if (id == focusValue) {
         layer.setStyle({color: "rgba(65, 87, 95,.7)", opacity: 1});

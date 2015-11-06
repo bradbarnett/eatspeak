@@ -1,5 +1,30 @@
 /*FOUNDATION CUSTOMIZATIONS*/
 
+.leaflet-top .leaflet-control {
+    margin-top: 50px;
+}
+
+.info-pane {
+    position: fixed;
+    top: 30px;
+    right: 0;
+    background-color: white;
+    min-height: 100px;
+    width: 475px;
+    font-size: 85%;
+    line-height: 1.2;
+    padding: 25px 25px 15px 10px;
+    display: none;
+    border-top: 2px solid;
+    z-index:1000;
+}
+
+.close-div {
+    position: fixed;
+    top: 35px;
+    right: 10px;
+}
+
 .map-label {
 	color: rgba(65, 87, 95, .7);
 	opacity: 1;
@@ -194,8 +219,7 @@ border-radius: 0;
 border-radius: 0;
     padding: 1px 3px;
     background-color: transparent;
-    color: rgba(65, 87, 95, .9);
-      border-bottom: 2px solid;
+    color: rgba(65, 87, 95, 1);
     /* border-right: 1px solid; */
     margin-right: 10px;
     font-family: 'baskerville', serif;
@@ -203,6 +227,21 @@ border-radius: 0;
     font-weight: 600;
     transition: border-bottom .3s, color .3s;
 }
+
+.current-nav {
+border-radius: 0;
+    padding: 1px 3px;
+    background-color: transparent;
+    color: rgba(65, 87, 95, 1);
+      border-bottom: 2px solid;
+    /* border-right: 1px solid; */
+    margin-right: 10px;
+    font-family: 'baskerville', serif;
+    font-size: 85%;
+    font-weight: 600;
+    border-bottom: 4px solid;
+}
+
 
 section {
 	height: 100%;
@@ -415,10 +454,14 @@ form {
 .map-title {
 	font-size: 150%;
     position: absolute;
-    top: 35px;
+    top: 10px;
     z-index: 1000;
     background-color: white;
     padding: 0 10px;
+}
+
+.map-title, .leaflet-bar {
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
 }
 
 #map, #map-explore {

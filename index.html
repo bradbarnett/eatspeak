@@ -66,8 +66,41 @@
       </form> -->
       </div>
     </nav>
+    <div id="microsoftCampus" class="info-pane">
+      <div class="close-div">
+        <a id="microsoftCampus" class="close-reveal-modal pane">×</a>
+      </div>
+          Microsoft moved to Redmond in 1986, and shortly after that the South Asian population began to boom. Since 1990, the Asian Indian population in King County has tripled every decade. Today, 1 in 10 Redmond residents is Indian. 
+    </div>
+    <div id="internationalDistrict" class="info-pane">
+      <div class="close-div">
+        <a id="microsoftCampus" class="close-reveal-modal pane">×</a>
+      </div>
+          The International District contains the traditional Chinatown, Japantown, and Little Saigon. The exact boundaries have evolved over the years to reflect displacement, fires, and other shifting forces in urban development. Today, the area West of I-5 is predominantly Chinese, while the eastern area is primarily Vietnamese. Like manycChinatowns, a large percentage of the Chinese character of the International District today is retail and commercial, with many Chinese-speaking families today located in Bellevue and other suburban areas.
+    </div>
   </div>  
+      <div id="internationalDistrict" class="info-pane">
+      <div class="close-div">
+        <a id="internationalDistrict" class="close-reveal-modal pane">×</a>
+      </div>
+          The International District contains the traditional Chinatown, Japantown, and Little Saigon. The exact boundaries have evolved over the years to reflect displacement, fires, and other shifting forces in urban development. Today, the area West of I-5 is predominantly Chinese, while the eastern area is primarily Vietnamese. Like manycChinatowns, a large percentage of the Chinese character of the International District today is retail and commercial, with many Chinese-speaking families today located in Bellevue and other suburban areas.
+    </div>
   
+  <div id="rainierValley" class="info-pane">
+      <div class="close-div">
+        <a id="rainierValley" class="close-reveal-modal pane">×</a>
+      </div>
+          Rainier Valley is one of the most ethnically diverse areas in the Pacific Northwest. Rainier Avenue, the major commerical corridor, swings back and forth from Asian to African shops and restaurants. Moreso than areas like Chinatown or the Central District, the Rainier Valley is a patchwork of neighborhoods containing both the restaurants and the language-speaking homes of the Asian and African communities. 
+  </div>
+
+    <div id="university" class="info-pane">
+      <div class="close-div">
+        <a id="university" class="close-reveal-modal pane">×</a>
+      </div>
+          University Avenue is one of the best commercial strips for ethnic restaurants in the city, but perhaps the most striking thing about the University District is the stratification of Asian languages represented near campus. Chinese speaking and Korean speaking homes dominate, but Vietnamese households are relatively sparse. This could be due to smaller Vietnamese enrollments at UW, or it could mean Vietnamese speakers are living in locations further from campus. 
+    </div>
+  </div>  
+
   <section id="startHere">
     <div class="first-section">
       <div id="mapsBox">
@@ -215,6 +248,9 @@
 <script>
   $(document).foundation();
   $(document).ready(function(){$('#myModal').foundation('reveal', 'open')}); 
+  $(".pane").click(function() {
+    $(this).parent().parent().hide();
+  });
 </script> 
 <script type="text/javascript" src="js/skrollr.min.js"></script>
 <!-- <script type="text/javascript">
